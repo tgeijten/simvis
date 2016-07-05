@@ -1,6 +1,7 @@
 #include "osg_tools.h"
 
 #include <osg/Geometry>
+#include "osg/Material"
 
 namespace simvis
 {
@@ -47,7 +48,6 @@ namespace simvis
 
 		geom->addPrimitiveSet( whitePrimitives.get() );
 		geom->addPrimitiveSet( blackPrimitives.get() );
-
 		osg::Geode* geode = new osg::Geode;
 		geode->addDrawable( geom );
 		geode->getOrCreateStateSet()->setMode( GL_CULL_FACE, osg::StateAttribute::ON );

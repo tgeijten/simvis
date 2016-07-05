@@ -3,6 +3,7 @@
 #include "osgDB/ReadFile"
 #include "osg/ShapeDrawable"
 #include "scene.h"
+#include "osg/Material"
 
 namespace simvis
 {
@@ -43,6 +44,15 @@ namespace simvis
 
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
+
+		osg::ref_ptr< osg::Material > mat = new osg::Material;
+		mat->setDiffuse( osg::Material::FRONT, make_osg( col ) );
+		mat->setSpecular( osg::Material::FRONT, osg::Vec4(0.5, 0.5, 0.5, 1.0) );
+		mat->setAmbient( osg::Material::FRONT, osg::Vec4(0.1, 0.1, 0.1, 1.0) );
+		mat->setEmission( osg::Material::FRONT, osg::Vec4(0.0, 0.0, 0.0, 1.0) );
+		mat->setShininess( osg::Material::FRONT, 25.0 );
+
+		g->getOrCreateStateSet()->setAttribute( mat );
 		
 		node->addChild( g );
 		s.osg_root().addChild( node );

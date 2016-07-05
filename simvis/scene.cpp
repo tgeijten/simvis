@@ -12,17 +12,17 @@ namespace simvis
 		root = s_root;
 
 		/// setup shadows
-		auto sm = new osgShadow::SoftShadowMap;
+		auto sm = new osgShadow::ShadowMap;
 		sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
         s_root->setShadowTechnique( sm );
 
 		auto ss = new osgShadow::ShadowSettings;
-		ss->setCastsShadowTraversalMask( 0x1 );
-		ss->setReceivesShadowTraversalMask( 0x2 ); // this one doesn't do anything in osg
+		ss->setCastsShadowTraversalMask( OsgCastShadowMask );
+		ss->setReceivesShadowTraversalMask( OsgReceiveShadowMask ); // this one doesn't do anything in osg
 		s_root->setShadowSettings( ss );
 
 		// create floor
-		auto ground = create_tile_floor( 50, 50, 1 );
+		auto ground = create_tile_floor( 64, 64, 1 );
 		set_shadow_mask( ground, true, false );
 		root->addChild( ground );
 	}
