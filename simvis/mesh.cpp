@@ -40,6 +40,7 @@ namespace simvis
 		}
 
 		sd->setColor( make_osg( col ) );
+
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		

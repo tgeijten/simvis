@@ -13,7 +13,7 @@ namespace simvis
 		color( float r, float g, float b, float a = 1.0 ) { set( r, g, b, a ); }
 
 		template< typename T > color& set( T r, T g, T b, T a )
-		{ value = int( r * 255.5 ) << 24 | int( g * 255.5 ) << 16 | int( r * 255.5 ) << 8 | int( a * 255.5 ); return *this; }
+		{ value = int( r * 255.5 ) << 24 | int( g * 255.5 ) << 16 | int( b * 255.5 ) << 8 | int( a * 255.5 ); return *this; }
 
 		float r() const { return float( ( value >> 24 ) & 255 ) / 255; }
 		float g() const { return float( ( value >> 16 ) & 255 ) / 255; }
@@ -29,4 +29,5 @@ namespace simvis
 	static color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br ); }
 	static color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br*(1-sat), br ); }
 	static color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
+	static color make_white( double br = 1.0 ) { return color( br, br, br ); }
 }
