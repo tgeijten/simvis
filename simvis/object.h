@@ -1,6 +1,7 @@
 #pragma once
 
 #include "prerequisites.h"
+#include "color.h"
 #include "osg/Node"
 
 namespace simvis
@@ -12,7 +13,7 @@ namespace simvis
 		virtual ~object() {}
 
 		virtual void show( bool show );
-		virtual void color( const flut::math::vec4f& c );
+		virtual void set_color( const color& c );
 
 		virtual osg::Node* osg_node() = 0;
 	};

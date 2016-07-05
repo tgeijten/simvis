@@ -9,7 +9,7 @@ namespace simvis
 
 	}
 
-	void object::color( const flut::math::vec4f& c )
+	void object::set_color( const color& c )
 	{
 
 	}

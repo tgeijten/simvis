@@ -2,6 +2,7 @@
 #include "osg_tools.h"
 #include "osgDB/ReadFile"
 #include "osg/ShapeDrawable"
+#include "scene.h"
 
 namespace simvis
 {
@@ -13,7 +14,7 @@ namespace simvis
 		node->addChild( mesh );
 	}
 
-	mesh::mesh( primitive_shape shape, const vec3f& dim, const vec4f& color, float detail )
+	mesh::mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
 	{
 		node = new osg::PositionAttitudeTransform;
 
@@ -28,20 +29,22 @@ namespace simvis
 			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.length() ), hints );
 			break;
 		case primitive_shape::box:
+			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.x, dim.y, dim.z ) );
 			break;
-		case primitive_shape::cylinder_x:
+		case primitive_shape::cylinder:
+			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ) );
 			break;
-		case primitive_shape::cylinder_y:
-			break;
-		case primitive_shape::cylinder_z:
+		case primitive_shape::cone:
+			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ) );
 			break;
 		}
 
-		sd->setColor( make_osg( color ) );
+		sd->setColor( make_osg( col ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		
 		node->addChild( g );
+		s.osg_root().addChild( node );
 	}
 
 	void mesh::pos( const vec3f& pos )
@@ -52,5 +55,10 @@ namespace simvis
 	void mesh::ori( const quatf& ori )
 	{
 		node->setAttitude( make_osg( ori ) );
+	}
+
+	void mesh::scale( const vec3f& s )
+	{
+		node->setScale( make_osg( s ) );
 	}
 }

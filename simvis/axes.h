@@ -1,16 +1,17 @@
 #pragma once
 
 #include "object.h"
+#include "mesh.h"
 
 namespace simvis
 {
 	class SIMVIS_API axes : public object
 	{
 	public:
-		axes() {}
-		virtual ~axes() {}
+		axes();
+		virtual ~axes();
 		
-	protected:
 	private:
+		mesh axes_mesh;
 	};
 }
