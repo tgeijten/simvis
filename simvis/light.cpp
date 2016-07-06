@@ -1,7 +1,7 @@
 #include "light.h"
 #include "osg_tools.h"
 
-namespace simvis
+namespace vis
 {
 	int light::unique_light_number = 0;
 

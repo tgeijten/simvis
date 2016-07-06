@@ -3,7 +3,7 @@
 #include "flut/math/quat.hpp"
 #include "flut/math/vec3.hpp"
 
-namespace simvis
+namespace vis
 {
 	
 	arrow::arrow( scene& s, float radius, const color& c, float detail )

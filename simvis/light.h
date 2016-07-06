@@ -5,7 +5,7 @@
 
 #include <osg/LightSource>
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API light : public object
 	{

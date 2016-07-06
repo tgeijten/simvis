@@ -4,7 +4,7 @@
 #include "osgShadow/SoftShadowMap"
 #include "osg_tools.h"
 
-namespace simvis
+namespace vis
 {
 	scene::scene()
 	{
@@ -51,7 +51,7 @@ namespace simvis
 		return mesh( *this, primitive_shape::cylinder, vec3f( radius, 0, height ), c, detail );
 	}
 
-	simvis::mesh scene::make_cone( float radius, float height, color c, float detail )
+	vis::mesh scene::make_cone( float radius, float height, color c, float detail )
 	{
 		return mesh( *this, primitive_shape::cone, vec3f( radius, 0, height ), c, detail );
 	}
@@ -66,7 +66,7 @@ namespace simvis
 		return path();
 	}
 
-	simvis::light scene::make_light( const vec3f& pos, const color& c )
+	vis::light scene::make_light( const vec3f& pos, const color& c )
 	{
 		light l( pos, c );
 		root->addChild( l.osg_node() );

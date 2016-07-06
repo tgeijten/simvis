@@ -1,5 +1,5 @@
 #include "path.h"
 
-namespace simvis
+namespace vis
 {
 }

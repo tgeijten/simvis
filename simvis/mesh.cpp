@@ -5,7 +5,7 @@
 #include "scene.h"
 #include "osg/Material"
 
-namespace simvis
+namespace vis
 {
 
 	mesh::mesh( const string& filename )

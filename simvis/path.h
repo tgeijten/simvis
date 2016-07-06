@@ -3,7 +3,7 @@
 #include "object.h"
 #include "osg/Group"
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API path : public object
 	{

@@ -1,6 +1,6 @@
 #include "axes.h"
 
-namespace simvis
+namespace vis
 {
 	
 	axes::axes()

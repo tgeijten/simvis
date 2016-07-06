@@ -4,7 +4,7 @@
 #include "osg/Geode"
 #include "osg/PositionAttitudeTransform"
 
-namespace simvis
+namespace vis
 {
 	enum class primitive_shape { sphere, box, cylinder, cone };
 

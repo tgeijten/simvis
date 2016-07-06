@@ -7,7 +7,7 @@
 #include "color.h"
 #include "light.h"
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API scene : public object
 	{

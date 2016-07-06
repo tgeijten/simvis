@@ -3,7 +3,7 @@
 #include "object.h"
 #include "mesh.h"
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API axes : public object
 	{

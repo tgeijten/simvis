@@ -15,7 +15,7 @@
 #include "flut/math/quat_type.hpp"
 #include <string>
 
-namespace simvis
+namespace vis
 {
 	class scene;
 	class mesh;

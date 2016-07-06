@@ -5,7 +5,7 @@
 #include "osg/Group"
 #include "mesh.h"
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API arrow : public object
 	{

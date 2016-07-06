@@ -3,7 +3,7 @@
 #include "prerequisites.h"
 #include <cstdint>
 
-namespace simvis
+namespace vis
 {
 	struct SIMVIS_API color
 	{

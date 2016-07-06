@@ -4,7 +4,7 @@
 #include "color.h"
 #include "osg/Node"
 
-namespace simvis
+namespace vis
 {
 	class SIMVIS_API object 
 	{

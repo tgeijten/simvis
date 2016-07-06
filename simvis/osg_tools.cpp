@@ -3,7 +3,7 @@
 #include <osg/Geometry>
 #include "osg/Material"
 
-namespace simvis
+namespace vis
 {
 	osg::Geode* create_tile_floor( int x_tiles, int z_tiles, float tile_width /*= 1.0f */ )
 	{

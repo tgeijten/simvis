@@ -8,7 +8,7 @@
 #include <osg/Quat>
 #include <osg/Geode>
 
-namespace simvis
+namespace vis
 {
 	const int OsgReceiveShadowMask = 0x1;
 	const int OsgCastShadowMask = 0x2;
