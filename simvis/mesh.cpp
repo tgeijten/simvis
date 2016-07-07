@@ -58,6 +58,17 @@ namespace vis
 		s.osg_root().addChild( node );
 	}
 
+	mesh::~mesh()
+	{
+		if ( node->referenceCount() == 2 )
+			node->getParent( 0 )->removeChild( node );
+	}
+
+	void mesh::show( bool b )
+	{
+		node->setNodeMask( b ? ~0 : 0 );
+	}
+
 	void mesh::pos( const vec3f& pos )
 	{
 		node->setPosition( make_osg( pos ) );

@@ -15,8 +15,9 @@ namespace vis
 		mesh( const mesh& other ) : node( other.node ) {}
 		mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		mesh( const string& filename );
-		virtual ~mesh() {}
+		virtual ~mesh();
 
+		void show( bool b );
 		void pos( const vec3f& pos );
 		void ori( const quatf& ori );
 		void pos_ori( const vec3f& p, const quatf& o ) { pos( p ); ori( o ); }
