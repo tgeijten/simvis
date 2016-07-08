@@ -31,9 +31,7 @@ namespace vis
 
 	mesh scene::make_mesh( const string& filename )
 	{
-		mesh m( filename );
-		attach( m );
-		return m;
+		return mesh( *this, filename );
 	}
 
 	mesh scene::make_sphere( float radius, color c, float detail )

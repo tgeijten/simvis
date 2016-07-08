@@ -13,8 +13,8 @@ namespace vis
 	public:
 		mesh() : node( nullptr ) {}
 		mesh( const mesh& other ) : node( other.node ) {}
+		mesh( scene& s, const string& filename );
 		mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
-		mesh( const string& filename );
 		virtual ~mesh();
 
 		void show( bool b );

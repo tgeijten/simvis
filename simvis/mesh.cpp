@@ -7,12 +7,13 @@
 
 namespace vis
 {
-
-	mesh::mesh( const string& filename )
+	mesh::mesh( scene& s, const string& filename )
 	{
 		node = new osg::PositionAttitudeTransform;
 		osg::Node* m = osgDB::readNodeFile( filename );
+
 		node->addChild( m );
+		s.osg_root().addChild( node );
 	}
 
 	mesh::mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
@@ -60,8 +61,12 @@ namespace vis
 
 	mesh::~mesh()
 	{
-		//if ( node && node->referenceCount() == 2 )
-		//	node->getParent( 0 )->removeChild( node );
+		if ( node && node->referenceCount() == node->getNumParents() + 1 )
+		{
+			// this is the last ref, so remove all parents
+			while ( node->getNumParents() > 0 )
+				node->getParent( 0 )->removeChild( node );
+		}
 	}
 
 	void mesh::show( bool b )
