@@ -11,8 +11,8 @@ namespace vis
 	mesh::mesh( const string& filename )
 	{
 		node = new osg::PositionAttitudeTransform;
-		auto mesh = osgDB::readNodeFile( filename );
-		node->addChild( mesh );
+		osg::Node* m = osgDB::readNodeFile( filename );
+		node->addChild( m );
 	}
 
 	mesh::mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
@@ -60,8 +60,8 @@ namespace vis
 
 	mesh::~mesh()
 	{
-		if ( node && node->referenceCount() == 2 )
-			node->getParent( 0 )->removeChild( node );
+		//if ( node && node->referenceCount() == 2 )
+		//	node->getParent( 0 )->removeChild( node );
 	}
 
 	void mesh::show( bool b )
