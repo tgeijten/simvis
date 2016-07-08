@@ -60,7 +60,7 @@ namespace vis
 
 	mesh::~mesh()
 	{
-		if ( node->referenceCount() == 2 )
+		if ( node && node->referenceCount() == 2 )
 			node->getParent( 0 )->removeChild( node );
 	}
 
