@@ -44,6 +44,7 @@ FIND_PACKAGE( OpenThreads )
 INCLUDE_DIRECTORIES(${OSG_INCLUDE_DIR})
 
 target_link_libraries(simvis
+	flut
 	${OSG_LIBRARIES}
 	${OSGWIDGET_LIBRARIES}
 	${OSGGA_LIBRARIES}

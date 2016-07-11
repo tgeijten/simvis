@@ -19,5 +19,7 @@ namespace vis
 	inline osg::Vec4f make_osg( const color& v ) { return osg::Vec4f( v.r(), v.g(), v.b(), v.a() ); }
 
 	SIMVIS_API osg::Geode* create_tile_floor( int x_tiles, int z_tiles, float tile_width = 1.0f );
+	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const string& filename );
+
 	SIMVIS_API void set_shadow_mask( osg::Node* n, bool receive, bool cast );
 }

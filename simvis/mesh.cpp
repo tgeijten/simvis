@@ -4,15 +4,21 @@
 #include "osg/ShapeDrawable"
 #include "scene.h"
 #include "osg/Material"
+#include "flut/string_tools.hpp"
 
 namespace vis
 {
 	mesh::mesh( scene& s, const string& filename )
 	{
 		node = new osg::PositionAttitudeTransform;
-		osg::Node* m = osgDB::readNodeFile( filename );
 
-		node->addChild( m );
+		osg::ref_ptr< osg::Node > file_node;
+		if ( flut::get_filename_ext( filename ) == "vtp" )
+			file_node = read_vtp( filename );
+		else
+			file_node = osgDB::readNodeFile( filename );
+
+		node->addChild( file_node );
 		s.osg_root().addChild( node );
 	}
 
