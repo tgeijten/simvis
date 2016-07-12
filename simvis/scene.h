@@ -12,7 +12,7 @@ namespace vis
 	class SIMVIS_API scene : public object
 	{
 	public:
-		scene();
+		scene( bool use_shadows );
 		~scene();
 
 		mesh make_mesh( const string& filename );

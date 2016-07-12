@@ -6,20 +6,30 @@
 
 namespace vis
 {
-	scene::scene()
+	scene::scene( bool use_shadows )
 	{
-		auto s_root = new osgShadow::ShadowedScene;
-		root = s_root;
+		if ( use_shadows )
+		{
+			auto s_root = new osgShadow::ShadowedScene;
+			root = s_root;
 
-		/// setup shadows
-		auto sm = new osgShadow::ShadowMap;
-		sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
-        s_root->setShadowTechnique( sm );
+			/// setup shadows
+			auto sm = new osgShadow::ShadowMap;
+			sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
+			s_root->setShadowTechnique( sm );
 
-		auto ss = new osgShadow::ShadowSettings;
-		ss->setCastsShadowTraversalMask( OsgCastShadowMask );
-		ss->setReceivesShadowTraversalMask( OsgReceiveShadowMask ); // this one doesn't do anything in osg
-		s_root->setShadowSettings( ss );
+			auto ss = new osgShadow::ShadowSettings;
+			ss->setCastsShadowTraversalMask( OsgCastShadowMask );
+			ss->setReceivesShadowTraversalMask( OsgReceiveShadowMask ); // this one doesn't do anything in osg
+			s_root->setShadowSettings( ss );
+		}
+		else
+		{
+			root = new osg::Group;
+		}
+
+		// enable lighting
+		root->getOrCreateStateSet()->setMode( GL_LIGHTING, osg::StateAttribute::ON );
 
 		// create floor
 		auto ground = create_tile_floor( 64, 64, 1 );
@@ -66,10 +76,7 @@ namespace vis
 
 	vis::light scene::make_light( const vec3f& pos, const color& c )
 	{
-		light l( pos, c );
-		root->addChild( l.osg_node() );
-		root->getOrCreateStateSet()->setMode( GL_LIGHT0 + l.get_number(), osg::StateAttribute::ON );
-		return l;
+		return light( *this, pos, c );
 	}
 
 	void scene::attach( object& o )

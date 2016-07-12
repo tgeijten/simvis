@@ -47,21 +47,14 @@ namespace vis
 			break;
 		}
 
-		sd->setColor( make_osg( col ) );
+		//sd->setColor( make_osg( col ) );
 
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
-
-		osg::ref_ptr< osg::Material > mat = new osg::Material;
-		mat->setDiffuse( osg::Material::FRONT, make_osg( col ) );
-		mat->setSpecular( osg::Material::FRONT, osg::Vec4(0.5, 0.5, 0.5, 1.0) );
-		mat->setAmbient( osg::Material::FRONT, osg::Vec4(0.1, 0.1, 0.1, 1.0) );
-		mat->setEmission( osg::Material::FRONT, osg::Vec4(0.0, 0.0, 0.0, 1.0) );
-		mat->setShininess( osg::Material::FRONT, 25.0 );
-
-		g->getOrCreateStateSet()->setAttribute( mat );
-		
 		node->addChild( g );
+
+		set_color( col );
+
 		s.osg_root().addChild( node );
 	}
 
@@ -73,6 +66,18 @@ namespace vis
 			while ( node->getNumParents() > 0 )
 				node->getParent( 0 )->removeChild( node );
 		}
+	}
+
+	void mesh::set_color( const color& col, float specular /*= 1.0f*/, float shinyness /*= 15.0f*/, float ambient /*= 0.2f*/, float emissive /*= 0.0f */ )
+	{
+		osg::ref_ptr< osg::Material > mat = new osg::Material;
+		mat->setDiffuse( osg::Material::FRONT, make_osg( col ) );
+		mat->setSpecular( osg::Material::FRONT, osg::Vec4( specular, specular, specular, 1.0) );
+		mat->setAmbient( osg::Material::FRONT, make_osg( col ) * ambient );
+		mat->setEmission( osg::Material::FRONT, make_osg( col ) * emissive );
+		mat->setShininess( osg::Material::FRONT, 25.0 );
+
+		node->getChild( 0 )->asGeode()->getOrCreateStateSet()->setAttribute( mat );
 	}
 
 	void mesh::show( bool b )

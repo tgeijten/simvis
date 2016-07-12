@@ -12,6 +12,8 @@ set(SOURCE_FILES
 	"simvis/light.cpp"
 	"simvis/mesh.cpp"
 	"simvis/mesh.h"
+	"simvis/material.cpp"
+	"simvis/material.h"
 	"simvis/object.cpp"
 	"simvis/object.h"
 	"simvis/path.cpp"
