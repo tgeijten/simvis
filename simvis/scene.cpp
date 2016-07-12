@@ -14,9 +14,10 @@ namespace vis
 			root = s_root;
 
 			/// setup shadows
-			auto sm = new osgShadow::ShadowMap;
+			auto sm = new osgShadow::SoftShadowMap;
 			sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
 			s_root->setShadowTechnique( sm );
+			//sm->setAmbientBias( osg::Vec2( 0.5f, 0.5f ) );
 
 			auto ss = new osgShadow::ShadowSettings;
 			ss->setCastsShadowTraversalMask( OsgCastShadowMask );
@@ -69,9 +70,9 @@ namespace vis
 		return arrow( *this, radius, c, detail );
 	}
 
-	path scene::make_path( float radius, color c, float detail )
+	path scene::make_path( size_t num_points, float radius, color c, float detail /*= 0.5f */ )
 	{
-		return path();
+		return path( *this, num_points, radius, c, detail );
 	}
 
 	vis::light scene::make_light( const vec3f& pos, const color& c )

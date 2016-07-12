@@ -21,8 +21,8 @@ namespace vis
 
 		//Just two colors - gray and grey
 		osg::Vec4Array* colors = new osg::Vec4Array;
-		colors->push_back( osg::Vec4( 0.3f, 0.3f, 0.3f, 1.0f ) ); // white
-		colors->push_back( osg::Vec4( 0.25f, 0.25f, 0.25f, 1.0f ) ); // black
+		colors->push_back( osg::Vec4( 0.6f, 0.6f, 0.6f, 1.0f ) ); // white
+		colors->push_back( osg::Vec4( 0.5f, 0.5f, 0.5f, 1.0f ) ); // black
 
 		osg::ref_ptr<osg::DrawElementsUShort> whitePrimitives = new osg::DrawElementsUShort( GL_QUADS );
 		osg::ref_ptr<osg::DrawElementsUShort> blackPrimitives = new osg::DrawElementsUShort( GL_QUADS );

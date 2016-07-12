@@ -2,6 +2,7 @@
 
 #include "object.h"
 #include "osg/Group"
+#include "mesh.h"
 
 namespace vis
 {
@@ -9,13 +10,15 @@ namespace vis
 	{
 	public:
 		path() {}
+		path( scene& scene, size_t num_points, float radius, color c, float detail = 0.5f );
 		virtual ~path() {}
 
-		void set_points( size_t count, vec3f points[] );
+		void set_points( const std::vector< vec3f >& pvec );
 
-		virtual osg::Node* osg_node() override { return group; }
+		virtual osg::Node* osg_node() override { return points.front().osg_node(); }
 
 	private:
-		osg::ref_ptr< osg::Group > group;
+		std::vector< mesh > points;
+		std::vector< mesh > cylinders;
 	};
 }

@@ -21,7 +21,7 @@ namespace vis
 		mesh make_cylinder( float radius, float height, color c, float detail = 0.5f );
 		mesh make_cone( float radius, float height, color c, float detail = 0.5f );
 		arrow make_arrow( float radius, color c, float detail = 0.5f );
-		path make_path( float radius, color c, float detail = 0.5f );
+		path make_path( size_t num_points, float radius, color c, float detail = 0.5f );
 		light make_light( const vec3f& pos, const color& c );
 
 		void attach( object& o );
