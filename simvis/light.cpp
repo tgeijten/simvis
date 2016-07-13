@@ -20,7 +20,7 @@ namespace vis
 		light_source->setLight( l );
 		light_source->setLocalStateSetModes( osg::StateAttribute::ON );
 
-		s.osg_root().addChild( light_source );
-		s.osg_root().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
+		s.osg_group().addChild( light_source );
+		s.osg_group().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
 	}
 }

@@ -8,7 +8,7 @@ namespace vis
 	class SIMVIS_API axes : public object
 	{
 	public:
-		axes( scene& s, float length );
+		axes( group& s, float length );
 		virtual ~axes();
 		
 	private:

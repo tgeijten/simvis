@@ -5,19 +5,20 @@
 
 namespace vis
 {
-	path::path( scene& scene, size_t num_points, float radius, color c, float detail ) 
+	path::path( group& scene, size_t num_points, float radius, color c, float detail ) :
+	radius( radius ),
+	col( c ),
+	detail( detail )
 	{
-		for ( size_t i = 0; i < num_points; ++i )
-			points.push_back( scene.make_sphere( radius, c, detail ) );
-
-		for ( size_t i = 0; i < num_points - 1; ++i )
-			cylinders.push_back( scene.make_cylinder( radius, 1.0f, c, detail ) );
+		scene.attach( parent );
+		add_remove_points( num_points );
 	}
 
-	void path::set_points( const std::vector< vec3f >& pvec )
+	template< typename T >
+	void path::set_points( const std::vector< flut::math::vec3_<T> >& pvec )
 	{
 		if ( pvec.size() != points.size() )
-			return;
+			add_remove_points( pvec.size() );
 
 		for ( size_t i = 0; i < points.size(); ++i )
 			points[ i ].pos( pvec[ i ] );
@@ -25,9 +26,24 @@ namespace vis
 		for ( size_t i = 0; i < cylinders.size(); ++i )
 		{
 			auto delta = pvec[ i + 1 ] - pvec[ i ];
-			cylinders[ i ].pos( pvec[ i ] + 0.5f * delta );
-			cylinders[ i ].ori( make_quat_from_directions( vec3f::make_unit_z(), normalized( delta ) ) );
+			cylinders[ i ].pos( pvec[ i ] + T(0.5) * delta );
+			cylinders[ i ].ori( make_quat_from_directions( vec3f::make_unit_z(), vec3f( normalized( delta ) ) ) );
 			cylinders[ i ].scale( vec3f( 1.0f, 1.0f, delta.length() ) );
 		}
+	}
+
+	void path::add_remove_points( size_t num_points )
+	{
+		size_t num_cylinders = num_points > 0 ? num_points - 1 : 0;
+
+		// add points
+		while ( points.size() < num_points )
+			points.push_back( parent.add_sphere( radius * 1.05f, col, detail ) );
+		while ( cylinders.size() < num_cylinders )
+			cylinders.push_back( parent.add_cylinder( radius, 1.0f, col, detail ) );
+
+		// remove points
+		points.resize( num_points );
+		cylinders.resize( num_cylinders );
 	}
 }

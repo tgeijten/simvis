@@ -13,11 +13,10 @@ namespace vis
 	public:
 		mesh() : node( nullptr ) {}
 		mesh( const mesh& other ) : node( other.node ) {}
-		mesh( scene& s, const string& filename );
-		mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
+		mesh( group& s, const string& filename );
+		mesh( group& s, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 
-		void set_color( const color& col, float specular = 1.0f, float shinyness = 15.0f, float ambient = 0.0f, float emissive = 0.0f );
 		void show( bool b );
 		void pos( const vec3f& pos );
 		void ori( const quatf& ori );

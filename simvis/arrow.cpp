@@ -6,10 +6,10 @@
 namespace vis
 {
 	
-	arrow::arrow( scene& s, float radius, const color& c, float detail )
+	arrow::arrow( group& s, float radius, const color& c, float detail )
 	{
-		cylinder = s.make_cylinder( radius, 0, c, detail );
-		end_cone = s.make_cone( radius * 2, radius * 2, c, detail );
+		cylinder = s.add_cylinder( radius, 0, c, detail );
+		end_cone = s.add_cone( radius * 2, radius * 2, c, detail );
 	}
 
 	arrow::~arrow() {}

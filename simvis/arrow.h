@@ -12,7 +12,7 @@ namespace vis
 	public:
 		arrow() {}
 		arrow( const arrow& other ) : cylinder( other.cylinder ), end_cone( other.end_cone ) {}
-		arrow( scene& s, float radius, const color& c, float detail );
+		arrow( group& s, float radius, const color& c, float detail );
 		virtual ~arrow();
 
 		void pos( const vec3f& begin_pos, const vec3f& end_pos );
@@ -23,6 +23,5 @@ namespace vis
 	private:
 		mesh cylinder;
 		mesh end_cone;
-		float radius;
 	};
 }

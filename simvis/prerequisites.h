@@ -17,9 +17,13 @@
 
 namespace vis
 {
+	class group;
 	class scene;
 	class mesh;
 	class arrow;
+	class path;
+	class arrow;
+	class light;
 
 	using std::string;
 

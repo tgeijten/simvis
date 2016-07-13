@@ -12,8 +12,8 @@ namespace vis
 		object() {}
 		virtual ~object() {}
 
-		virtual void show( bool show );
-		virtual void set_color( const color& c );
+		void show( bool show );
+		void set_color( const color& col, float specular = 1.0f, float shinyness = 15.0f, float ambient = 0.0f, float emissive = 0.0f );
 
 		virtual osg::Node* osg_node() = 0;
 	};

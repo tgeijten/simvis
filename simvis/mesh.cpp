@@ -8,7 +8,7 @@
 
 namespace vis
 {
-	mesh::mesh( scene& s, const string& filename )
+	mesh::mesh( group& s, const string& filename )
 	{
 		node = new osg::PositionAttitudeTransform;
 
@@ -19,10 +19,10 @@ namespace vis
 			file_node = osgDB::readNodeFile( filename );
 
 		node->addChild( file_node );
-		s.osg_root().addChild( node );
+		s.osg_group().addChild( node );
 	}
 
-	mesh::mesh( scene& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
+	mesh::mesh( group& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
 	{
 		node = new osg::PositionAttitudeTransform;
 
@@ -55,7 +55,7 @@ namespace vis
 
 		set_color( col );
 
-		s.osg_root().addChild( node );
+		s.osg_group().addChild( node );
 	}
 
 	mesh::~mesh()
@@ -66,18 +66,6 @@ namespace vis
 			while ( node->getNumParents() > 0 )
 				node->getParent( 0 )->removeChild( node );
 		}
-	}
-
-	void mesh::set_color( const color& col, float specular /*= 1.0f*/, float shinyness /*= 15.0f*/, float ambient /*= 0.2f*/, float emissive /*= 0.0f */ )
-	{
-		osg::ref_ptr< osg::Material > mat = new osg::Material;
-		mat->setDiffuse( osg::Material::FRONT, make_osg( col ) );
-		mat->setSpecular( osg::Material::FRONT, osg::Vec4( specular, specular, specular, 1.0) );
-		mat->setAmbient( osg::Material::FRONT, make_osg( col ) * ambient );
-		mat->setEmission( osg::Material::FRONT, make_osg( col ) * emissive );
-		mat->setShininess( osg::Material::FRONT, 25.0 );
-
-		node->getChild( 0 )->asGeode()->getOrCreateStateSet()->setAttribute( mat );
 	}
 
 	void mesh::show( bool b )
