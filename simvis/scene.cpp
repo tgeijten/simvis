@@ -32,6 +32,16 @@ namespace vis
 		// enable lighting
 		node->getOrCreateStateSet()->setMode( GL_LIGHTING, osg::StateAttribute::ON );
 
+		// set default lighting
+		osg::ref_ptr< osg::Material > mat = new osg::Material;
+		mat->setDiffuse( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
+		mat->setSpecular( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
+		mat->setAmbient( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
+		mat->setEmission( osg::Material::FRONT, osg::Vec4( 0, 0, 0, 1 ) );
+		mat->setShininess( osg::Material::FRONT, 25.0 );
+		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
+		node->getOrCreateStateSet()->setAttribute( mat );
+
 		// create floor
 		auto ground = create_tile_floor( 64, 64, 1 );
 		set_shadow_mask( ground, true, false );

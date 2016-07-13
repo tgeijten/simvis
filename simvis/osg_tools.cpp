@@ -4,6 +4,7 @@
 #include "osg/Material"
 #include "flut/prop_node.hpp"
 #include "flut/system/log.hpp"
+#include "flut/timer.hpp"
 
 using namespace flut;
 
@@ -65,38 +66,29 @@ namespace vis
 		prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];
 		auto point_count = poly_pn.get< int >( "NumberOfPoints");
 		auto poly_count = poly_pn.get< int >( "NumberOfPolys" );
-		//auto& normals_pn = poly_pn[ "PointData" ][ "DataArray" ];
-		//auto& points_pn = poly_pn[ "Points" ][ "DataArray" ];
-		//auto& poly_con_pn = poly_pn[ "Polys" ][ 0 ];
-		//auto& poly_ofs_pn = poly_pn[ "Polys" ][ 1 ];
 
-		// create normal array
+		// create normal and vertex array
 		osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array( point_count );
-		{
-			std::stringstream str( poly_pn[ "PointData" ][ "DataArray" ].get_value() );
-			for ( int idx = 0; idx < point_count; ++idx )
-				str >> normals->at( idx ).x() >> normals->at( idx ).y() >> normals->at( idx ).z();
-		}
-
-		// create Geometry object to store all the vertices and lines primitive.
-		osg::Geometry* polyGeom = new osg::Geometry();
 		osg::Vec3Array* vertices = new osg::Vec3Array( point_count );
+
+		auto normal_vec = from_vec_str< float >( poly_pn[ "PointData" ][ "DataArray" ].get_value(), no_index );
+		auto point_vec = from_vec_str< float >( poly_pn[ "Points" ][ "DataArray" ].get_value(), no_index );
+
+		size_t vec_idx = 0;
+		for ( int idx = 0; idx < point_count; ++idx )
 		{
-			std::stringstream str( poly_pn[ "Points" ][ "DataArray" ].get_value() );
-			for ( int idx = 0; idx < point_count; ++idx )
-				str >> vertices->at( idx ).x() >> vertices->at( idx ).y() >> vertices->at( idx ).z();
+			normals->at( idx ).set( normal_vec[ vec_idx ], normal_vec[ vec_idx + 1 ], normal_vec[ vec_idx  + 2] );
+			vertices->at( idx ).set( point_vec[ vec_idx ], point_vec[ vec_idx + 1 ], point_vec[ vec_idx  + 2] );
+			vec_idx += 3;
 		}
 
 		osg::ref_ptr< osg::DrawElementsUShort > trianglePrimitives = new osg::DrawElementsUShort( GL_TRIANGLES );
 		osg::ref_ptr< osg::DrawElementsUShort > quadPrimitives = new osg::DrawElementsUShort( GL_QUADS );
 
 		{
-			auto con_vec = from_vec_str< unsigned short >( poly_pn[ "Polys" ][ 0 ].get_value() );
-			auto ofs_vec = from_vec_str< unsigned short >( poly_pn[ "Polys" ][ 1 ].get_value() );
+			auto con_vec = from_vec_str< int >( poly_pn[ "Polys" ][ 0 ].get_value(), no_index );
+			auto ofs_vec = from_vec_str< int >( poly_pn[ "Polys" ][ 1 ].get_value(), no_index );
 			
-			//for ( auto& ofs : con_vec )
-			//	trianglePrimitives->push_back( ofs );
-
 			for ( size_t idx = 0; idx < ofs_vec.size(); ++idx )
 			{
 				auto end_ofs = ofs_vec[ idx ];
@@ -104,16 +96,16 @@ namespace vis
 				auto num_ver = end_ofs - begin_ofs;
 				if ( num_ver == 3 )
 				{
-					trianglePrimitives->push_back( con_vec[begin_ofs] );
-					trianglePrimitives->push_back( con_vec[begin_ofs + 1] );
-					trianglePrimitives->push_back( con_vec[begin_ofs + 2] );
+					trianglePrimitives->push_back( (unsigned short) con_vec[begin_ofs] );
+					trianglePrimitives->push_back( (unsigned short) con_vec[begin_ofs + 1] );
+					trianglePrimitives->push_back( (unsigned short) con_vec[begin_ofs + 2] );
 				}
 				else if ( num_ver == 4 )
 				{
-					quadPrimitives->push_back( con_vec[begin_ofs] );
-					quadPrimitives->push_back( con_vec[begin_ofs + 1] );
-					quadPrimitives->push_back( con_vec[begin_ofs + 2] );
-					quadPrimitives->push_back( con_vec[begin_ofs + 3] );
+					quadPrimitives->push_back( (unsigned short) con_vec[begin_ofs] );
+					quadPrimitives->push_back( (unsigned short) con_vec[begin_ofs + 1] );
+					quadPrimitives->push_back( (unsigned short) con_vec[begin_ofs + 2] );
+					quadPrimitives->push_back( (unsigned short) con_vec[begin_ofs + 3] );
 				}
 				else
 				{
@@ -124,6 +116,7 @@ namespace vis
 		}
 
 		// add primitives
+		osg::Geometry* polyGeom = new osg::Geometry;
 		if ( trianglePrimitives->size() > 0 )
 			polyGeom->addPrimitiveSet( trianglePrimitives );
 		if ( quadPrimitives->size() > 0 )

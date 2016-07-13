@@ -47,13 +47,13 @@ namespace vis
 			break;
 		}
 
-		//sd->setColor( make_osg( col ) );
+		sd->setColor( make_osg( col ) );
 
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		node->addChild( g );
 
-		set_color( col );
+		//set_color( col );
 
 		s.osg_group().addChild( node );
 	}
