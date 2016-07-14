@@ -71,8 +71,10 @@ namespace vis
 		osg::ref_ptr<osg::Vec3Array> normals = new osg::Vec3Array( point_count );
 		osg::Vec3Array* vertices = new osg::Vec3Array( point_count );
 
-		auto normal_vec = from_vec_str< float >( poly_pn[ "PointData" ][ "DataArray" ].get_value(), no_index );
-		auto point_vec = from_vec_str< float >( poly_pn[ "Points" ][ "DataArray" ].get_value(), no_index );
+		auto normal_vec = from_vec_str< float >( poly_pn[ "PointData" ][ "DataArray" ].get_value(), point_count );
+		auto point_vec = from_vec_str< float >( poly_pn[ "Points" ][ "DataArray" ].get_value(), point_count );
+
+		flut_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
 
 		size_t vec_idx = 0;
 		for ( int idx = 0; idx < point_count; ++idx )
