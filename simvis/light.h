@@ -2,7 +2,6 @@
 
 #include "prerequisites.h"
 #include "object.h"
-
 #include <osg/LightSource>
 
 namespace vis

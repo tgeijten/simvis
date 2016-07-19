@@ -20,7 +20,6 @@ namespace vis
 		mesh add_cone( float radius, float height, color c, float detail = 0.5f );
 		arrow add_arrow( float radius, color c, float detail = 0.5f );
 		path add_path( size_t num_points, float radius, color c, float detail = 0.5f );
-		light add_light( const vec3f& pos, const color& c );
 
 		void attach( object& o );
 		void detach( object& o );

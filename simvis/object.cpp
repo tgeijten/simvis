@@ -8,18 +8,24 @@ namespace vis
 	
 	void object::show( bool show )
 	{
-
+		// this resets any nodemask related setting
+		// TODO: find a better way to show/hide nodes
+		osg_node()->setNodeMask( show ? ~0 : 0 );
 	}
 
-	void object::set_color( const color& col, float specular /*= 1.0f*/, float shinyness /*= 15.0f*/, float ambient /*= 0.0f*/, float emissive /*= 0.0f */ )
+	void object::set_material( material& m )
 	{
-		osg::ref_ptr< osg::Material > mat = new osg::Material;
-		mat->setDiffuse( osg::Material::FRONT, make_osg( col ) );
-		mat->setSpecular( osg::Material::FRONT, osg::Vec4( specular, specular, specular, 1.0) );
-		mat->setAmbient( osg::Material::FRONT, make_osg( col ) * ambient );
-		mat->setEmission( osg::Material::FRONT, make_osg( col ) * emissive );
-		mat->setShininess( osg::Material::FRONT, 25.0 );
+		osg_node()->getOrCreateStateSet()->setAttribute( m.osg_mat() );
+	}
 
-		osg_node()->getOrCreateStateSet()->setAttribute( mat );
+	vis::material object::get_material()
+	{
+		auto* m = osg_node()->getOrCreateStateSet()->getAttribute( osg::StateAttribute::Type::MATERIAL );
+		return material( dynamic_cast< osg::Material* >( m ) );
+	}
+
+	bool object::has_parent()
+	{
+		return osg_node()->getNumParents() > 0;
 	}
 }
