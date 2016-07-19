@@ -20,6 +20,7 @@ namespace vis
 
 	vis::material object::get_material()
 	{
+		// WARNING: untested
 		auto* m = osg_node()->getOrCreateStateSet()->getAttribute( osg::StateAttribute::Type::MATERIAL );
 		return material( dynamic_cast< osg::Material* >( m ) );
 	}
