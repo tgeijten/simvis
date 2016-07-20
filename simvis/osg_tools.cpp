@@ -54,8 +54,17 @@ namespace vis
 		geom->addPrimitiveSet( whitePrimitives.get() );
 		geom->addPrimitiveSet( blackPrimitives.get() );
 		osg::Geode* geode = new osg::Geode;
+
+		osg::Material* mat = new osg::Material;
+		mat->setColorMode( osg::Material::EMISSION );
+		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+
 		geode->addDrawable( geom );
+
 		geode->getOrCreateStateSet()->setMode( GL_CULL_FACE, osg::StateAttribute::ON );
+		geode->getOrCreateStateSet()->setAttribute( mat );
 
 		return geode;
 	}
