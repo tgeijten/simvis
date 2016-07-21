@@ -25,6 +25,8 @@ set(SOURCE_FILES
 	"simvis/scene.h"
 	"simvis/osg_tools.cpp"
 	"simvis/osg_tools.h"
+	"simvis/osg_camera_man.cpp"
+	"simvis/osg_camera_man.h"
 	)
 
 source_group("simvis" FILES ${SOURCE_FILES})
