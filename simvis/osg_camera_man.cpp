@@ -1,5 +1,4 @@
 #include "osg_camera_man.h"
-#include "scone/core/math.h"
 
 using namespace osg;
 
