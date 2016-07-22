@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "osg_camera_man.h"
 
 using namespace osg;

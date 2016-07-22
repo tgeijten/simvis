@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "object.h"
 #include "osg/Group"
 #include "osg/Material"

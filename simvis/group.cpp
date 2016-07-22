@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "group.h"
 #include "mesh.h"
 #include "arrow.h"

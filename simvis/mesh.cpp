@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "mesh.h"
 #include "osg_tools.h"
 #include "osgDB/ReadFile"

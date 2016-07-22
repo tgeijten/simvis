@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "osg_tools.h"
 
 #include <osg/Geometry>

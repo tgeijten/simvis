@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "arrow.h"
 
 #include "flut/math/quat.hpp"
