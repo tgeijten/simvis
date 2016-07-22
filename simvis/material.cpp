@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "material.h"
 #include "osg_tools.h"
 

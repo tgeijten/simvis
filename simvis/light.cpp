@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "light.h"
 #include "osg_tools.h"
 #include "scene.h"

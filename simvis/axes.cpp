@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "axes.h"
 
 namespace vis

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "path.h"
 #include "scene.h"
 #include <flut/math/vec3.hpp>
