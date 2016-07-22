@@ -27,9 +27,20 @@ set(SOURCE_FILES
 	"simvis/osg_tools.h"
 	"simvis/osg_camera_man.cpp"
 	"simvis/osg_camera_man.h"
+	"simvis/stdafx.h"
 	)
 
+# specify precompiled headers for MSVC
+if(MSVC)
+	set(STD_AFX_SOURCE "simvis/stdafx.cpp")
+	set(PCH_FILE "${CMAKE_CURRENT_BINARY_DIR}/simvis.pch")
+	set_source_files_properties( ${STD_AFX_SOURCE} PROPERTIES COMPILE_FLAGS "/Ycstdafx.h /Fp\"${PCH_FILE}\"" OBJECT_OUTPUTS "${PCH_FILE}" )
+	set_source_files_properties( ${SOURCE_FILES} PROPERTIES COMPILE_FLAGS "/Yustdafx.h /FIstdafx.h /Fp\"${PCH_FILE}\"" OBJECT_DEPENDS "${PCH_FILE}" )
+	list( APPEND SOURCE_FILES ${STD_AFX_SOURCE} )
+endif(MSVC)
+
 source_group("simvis" FILES ${SOURCE_FILES})
+
 add_library(simvis SHARED ${SOURCE_FILES})
 
 # FLUT
