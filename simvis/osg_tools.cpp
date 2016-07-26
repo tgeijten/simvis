@@ -5,6 +5,7 @@
 #include "flut/prop_node.hpp"
 #include "flut/system/log.hpp"
 #include "flut/timer.hpp"
+#include "flut/prop_node_tools.hpp"
 
 using namespace flut;
 
