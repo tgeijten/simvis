@@ -2,16 +2,17 @@
 
 #include "object.h"
 #include "mesh.h"
+#include "group.h"
 
 namespace vis
 {
 	class SIMVIS_API axes : public object
 	{
 	public:
-		axes( group& s, float length );
+		axes( group& s, float length, float detail );
 		virtual ~axes();
 		
 	private:
-		mesh axes_mesh;
+		group parent;
 	};
 }
