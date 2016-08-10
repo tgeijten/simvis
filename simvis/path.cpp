@@ -28,7 +28,7 @@ namespace vis
 		{
 			auto delta = pvec[ i + 1 ] - pvec[ i ];
 			cylinders[ i ].pos( pvec[ i ] + T(0.5) * delta );
-			cylinders[ i ].ori( make_quat_from_directions( vec3f::make_unit_z(), vec3f( normalized( delta ) ) ) );
+			cylinders[ i ].ori( make_quat_from_directions( vec3f::unit_z(), vec3f( normalized( delta ) ) ) );
 			cylinders[ i ].scale( vec3f( 1.0f, 1.0f, delta.length() ) );
 		}
 	}
