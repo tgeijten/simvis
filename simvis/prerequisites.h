@@ -13,6 +13,7 @@
 #include "flut/math/vec3_type.hpp"
 #include "flut/math/vec4_type.hpp"
 #include "flut/math/quat_type.hpp"
+#include "flut/math/transform.hpp"
 #include <string>
 
 namespace vis
@@ -30,4 +31,5 @@ namespace vis
 	using flut::math::vec3f;
 	using flut::math::vec4f;
 	using flut::math::quatf;
+	using flut::math::transformf;
 }

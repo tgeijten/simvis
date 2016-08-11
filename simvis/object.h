@@ -3,6 +3,7 @@
 #include "prerequisites.h"
 #include "color.h"
 #include "material.h"
+#include "flut/math/transform.hpp"
 
 namespace vis
 {
@@ -16,6 +17,8 @@ namespace vis
 		void set_material( material& m );
 		material get_material();
 		bool has_parent();
+
+		virtual void transform( const transformf& t ) { FLUT_NOT_IMPLEMENTED; }
 
 		virtual osg::Node* osg_node() = 0;
 	};

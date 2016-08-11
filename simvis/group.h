@@ -29,6 +29,8 @@ namespace vis
 		osg::Group& osg_group() { return *node; }
 		virtual osg::Node* osg_node() override { return node; }
 
+		virtual void transform( const transformf& t ) override;
+
 	protected:
 		osg::ref_ptr< osg::Group > node;
 	};

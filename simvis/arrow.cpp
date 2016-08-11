@@ -13,7 +13,9 @@ namespace vis
 		end_cone = root.add_cone( radius * 2, radius * 4, c, detail );
 	}
 
-	arrow::~arrow() {}
+	arrow::~arrow()
+	{
+	}
 
 	void arrow::pos( const vec3f& begin_pos, const vec3f& end_pos )
 	{

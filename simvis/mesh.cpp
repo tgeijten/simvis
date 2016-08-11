@@ -87,4 +87,11 @@ namespace vis
 	{
 		node->setScale( make_osg( s ) );
 	}
+
+	void mesh::transform( const transformf& t )
+	{
+		node->setPosition( make_osg( t.p ) );
+		node->setAttitude( make_osg( t.q ) );
+	}
+
 }

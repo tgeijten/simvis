@@ -25,6 +25,8 @@ namespace vis
 		
 		virtual osg::Node* osg_node() override { return node; }
 
+		virtual void transform( const transformf& t ) override;
+
 	private:
 		osg::ref_ptr< osg::PositionAttitudeTransform > node;
 	};

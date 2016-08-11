@@ -2,12 +2,13 @@
 #include "mesh.h"
 #include "arrow.h"
 #include "path.h"
+#include "osg_tools.h"
 
 namespace vis
 {
 	group::group()
 	{
-		node = new osg::Group;
+		node = new osg::PositionAttitudeTransform;
 	}
 
 	mesh group::add_mesh( const string& filename )
@@ -64,4 +65,11 @@ namespace vis
 	{
 		return node->getNumChildren();
 	}
+
+	void group::transform( const transformf& t )
+	{
+		static_cast< osg::PositionAttitudeTransform& >( *node ).setPosition( make_osg( t.p ) );
+		static_cast< osg::PositionAttitudeTransform& >( *node ).setAttitude( make_osg( t.q ) );
+	}
+
 }
