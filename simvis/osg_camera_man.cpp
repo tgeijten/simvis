@@ -10,8 +10,8 @@ namespace vis
 		orbit_pitch( -5 )
 	{
 		setAllowThrow( false );
-		_distance = 5;
-		_center = Vec3d( 0, 1, 0 );
+		_distance = 4.5;
+		_center = Vec3d( 0, 0.9, 0 );
 
 		updateRotation();
 
