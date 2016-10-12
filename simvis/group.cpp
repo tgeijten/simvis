@@ -1,7 +1,7 @@
 #include "group.h"
 #include "mesh.h"
 #include "arrow.h"
-#include "path.h"
+#include "trail.h"
 #include "osg_tools.h"
 
 namespace vis
@@ -41,9 +41,9 @@ namespace vis
 		return arrow( *this, radius, c, detail );
 	}
 
-	path group::add_path( size_t num_points, float radius, color c, float detail /*= 0.5f */ )
+	trail group::add_path( size_t num_points, float radius, color c, float detail /*= 0.5f */ )
 	{
-		return path( *this, num_points, radius, c, detail );
+		return trail( *this, num_points, radius, c, detail );
 	}
 
 	void group::attach( object& o )

@@ -7,12 +7,12 @@
 
 namespace vis
 {
-	class SIMVIS_API path : public object
+	class SIMVIS_API trail : public object
 	{
 	public:
-		path() {}
-		path( group& scene, size_t num_points, float radius, color c, float detail = 0.5f );
-		virtual ~path() {}
+		trail() {}
+		trail( group& scene, size_t num_points, float radius, color c, float detail = 0.5f );
+		virtual ~trail() {}
 
 		template< typename T >
 		void set_points( const std::vector< flut::math::vec3_<T> >& pvec );
@@ -30,6 +30,6 @@ namespace vis
 		std::vector< mesh > cylinders;
 	};
 
-	template SIMVIS_API void path::set_points( const std::vector< flut::math::vec3_< float > >& );
-	template SIMVIS_API void path::set_points( const std::vector< flut::math::vec3_< double > >& );
+	template SIMVIS_API void trail::set_points( const std::vector< flut::math::vec3_< float > >& );
+	template SIMVIS_API void trail::set_points( const std::vector< flut::math::vec3_< double > >& );
 }

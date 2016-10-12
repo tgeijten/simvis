@@ -2,7 +2,7 @@
 
 #include "mesh.h"
 #include "arrow.h"
-#include "path.h"
+#include "trail.h"
 #include "object.h"
 #include "color.h"
 #include "light.h"

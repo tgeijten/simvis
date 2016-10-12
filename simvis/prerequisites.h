@@ -22,7 +22,7 @@ namespace vis
 	class scene;
 	class mesh;
 	class arrow;
-	class path;
+	class trail;
 	class arrow;
 	class light;
 

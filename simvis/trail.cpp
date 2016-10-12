@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "path.h"
+#include "trail.h"
 #include "scene.h"
 #include <flut/math/vec3.hpp>
 #include "flut/math/quat.hpp"
 
 namespace vis
 {
-	path::path( group& scene, size_t num_points, float radius, color c, float detail ) :
+	trail::trail( group& scene, size_t num_points, float radius, color c, float detail ) :
 	radius( radius ),
 	col( c ),
 	detail( detail )
@@ -16,7 +16,7 @@ namespace vis
 	}
 
 	template< typename T >
-	void path::set_points( const std::vector< flut::math::vec3_<T> >& pvec )
+	void trail::set_points( const std::vector< flut::math::vec3_<T> >& pvec )
 	{
 		if ( pvec.size() != points.size() )
 			add_remove_points( pvec.size() );
@@ -33,7 +33,7 @@ namespace vis
 		}
 	}
 
-	void path::add_remove_points( size_t num_points )
+	void trail::add_remove_points( size_t num_points )
 	{
 		size_t num_cylinders = num_points > 0 ? num_points - 1 : 0;
 
