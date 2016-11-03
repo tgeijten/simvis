@@ -23,11 +23,19 @@ namespace vis
 		std::uint32_t value;
 	};
 
-	static color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br*(1-sat) ); }
-	static color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*(1-sat) ); }
-	static color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br*(1-sat) ); }
-	static color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br ); }
-	static color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br*(1-sat), br ); }
-	static color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
-	static color make_white( double br = 1.0 ) { return color( br, br, br ); }
+	template< typename T > inline color operator*( T s, const color& c ) { return color( s * c.r(), s * c.g(), s * c.b(), s * c.a() ); }
+	template< typename T > inline color operator*( const color& c, T s ) { return color( s * c.r(), s * c.g(), s * c.b(), s * c.a() ); }
+
+	inline color operator+( const color& c1, const color& c2 ) { return color( c1.r() + c2.r(), c1.g() + c2.g(), c1.b() + c2.b(), c1.a() + c2.a() ); }
+	inline color operator-( const color& c1, const color& c2 ) { return color( c1.r() - c2.r(), c1.g() - c2.g(), c1.b() - c2.b(), c1.a() - c2.a() ); }
+
+	inline color mix_color( const color& col1, const color& col2, double w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
+
+	inline color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br*(1-sat) ); }
+	inline color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*(1-sat) ); }
+	inline color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br*(1-sat) ); }
+	inline color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br ); }
+	inline color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br*(1-sat), br ); }
+	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
+	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
 }
