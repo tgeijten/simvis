@@ -1,20 +1,19 @@
 #pragma once
 
 #include "object.h"
-#include "osg/Geode"
-#include "osg/PositionAttitudeTransform"
+#include "group.h"
 
 namespace vis
 {
 	enum class primitive_shape { sphere, box, cylinder, cone };
 
-	class SIMVIS_API mesh : public object
+	class SIMVIS_API mesh : public group
 	{
 	public:
-		mesh() : node( nullptr ) {}
-		mesh( const mesh& other ) : node( other.node ) {}
-		mesh( group& s, const string& filename );
-		mesh( group& s, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
+		mesh() : group() {}
+		mesh( const mesh& other ) : group( other ) {}
+		mesh( group& parent, const string& filename );
+		mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 
 		void show( bool b );
@@ -26,8 +25,5 @@ namespace vis
 		virtual osg::Node* osg_node() override { return node; }
 
 		virtual void transform( const transformf& t ) override;
-
-	private:
-		osg::ref_ptr< osg::PositionAttitudeTransform > node;
 	};
 }

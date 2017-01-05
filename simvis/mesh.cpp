@@ -8,10 +8,8 @@
 
 namespace vis
 {
-	mesh::mesh( group& s, const string& filename )
+	mesh::mesh( group& parent, const string& filename )
 	{
-		node = new osg::PositionAttitudeTransform;
-
 		osg::ref_ptr< osg::Node > file_node;
 		if ( flut::get_filename_ext( filename ) == "vtp" )
 			file_node = read_vtp( filename );
@@ -19,10 +17,10 @@ namespace vis
 			file_node = osgDB::readNodeFile( filename );
 
 		node->addChild( file_node );
-		s.osg_group().addChild( node );
+		parent.attach( *this );
 	}
 
-	mesh::mesh( group& s, primitive_shape shape, const vec3f& dim, const color& col, float detail )
+	mesh::mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail )
 	{
 		node = new osg::PositionAttitudeTransform;
 
@@ -55,7 +53,7 @@ namespace vis
 
 		//set_color( col );
 
-		s.osg_group().addChild( node );
+		parent.attach( *this );
 	}
 
 	mesh::~mesh()
@@ -75,23 +73,22 @@ namespace vis
 
 	void mesh::pos( const vec3f& pos )
 	{
-		node->setPosition( make_osg( pos ) );
+		osg_trans_node().setPosition( make_osg( pos ) );
 	}
 
 	void mesh::ori( const quatf& ori )
 	{
-		node->setAttitude( make_osg( ori ) );
+		osg_trans_node().setAttitude( make_osg( ori ) );
 	}
 
 	void mesh::scale( const vec3f& s )
 	{
-		node->setScale( make_osg( s ) );
+		osg_trans_node().setScale( make_osg( s ) );
 	}
 
 	void mesh::transform( const transformf& t )
 	{
-		node->setPosition( make_osg( t.p ) );
-		node->setAttitude( make_osg( t.q ) );
+		osg_trans_node().setPosition( make_osg( t.p ) );
+		osg_trans_node().setAttitude( make_osg( t.q ) );
 	}
-
 }

@@ -4,16 +4,16 @@
 
 namespace vis
 {
-	axes::axes( group& s, float length, float detail )
+	axes::axes( group& s, vec3f length, float detail )
 	{
 		s.attach( *this );
 		x_arrow = add_arrow( 0.005f, make_red(), detail );
 		y_arrow = add_arrow( 0.005f, make_green(), detail );
 		z_arrow = add_arrow( 0.005f, make_blue(), detail );
 
-		x_arrow.pos( vec3f::zero(), vec3f( length, 0, 0 ) );
-		y_arrow.pos( vec3f::zero(), vec3f( 0, length, 0 ) );
-		z_arrow.pos( vec3f::zero(), vec3f( 0, 0, length ) );
+		x_arrow.pos( vec3f::zero(), vec3f( length.x, 0, 0 ) );
+		y_arrow.pos( vec3f::zero(), vec3f( 0, length.y, 0 ) );
+		z_arrow.pos( vec3f::zero(), vec3f( 0, 0, length.z ) );
 	}
 
 	axes::~axes()

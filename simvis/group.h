@@ -1,7 +1,7 @@
 #pragma once
 
 #include "object.h"
-#include <osg/Group>
+#include <osg/PositionAttitudeTransform>
 
 namespace vis
 {
@@ -33,5 +33,6 @@ namespace vis
 
 	protected:
 		osg::ref_ptr< osg::Group > node;
+		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast< osg::PositionAttitudeTransform& >( *node ); }
 	};
 }

@@ -10,7 +10,7 @@ namespace vis
 	class SIMVIS_API axes : public group
 	{
 	public:
-		axes( group& s, float length, float detail );
+		axes( group& s, vec3f length, float detail );
 		virtual ~axes();
 		
 	private:
