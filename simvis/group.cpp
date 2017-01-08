@@ -36,9 +36,9 @@ namespace vis
 		return mesh( *this, primitive_shape::cone, vec3f( radius, 0, height ), c, detail );
 	}
 
-	arrow group::add_arrow( float radius, color c, float detail )
+	arrow group::add_arrow( float radius, float head_radius, color c, float detail )
 	{
-		return arrow( *this, radius, c, detail );
+		return arrow( *this, radius, head_radius, c, detail );
 	}
 
 	trail group::add_path( size_t num_points, float radius, color c, float detail /*= 0.5f */ )

@@ -18,7 +18,7 @@ namespace vis
 		mesh add_cube( vec3f dim, color c );
 		mesh add_cylinder( float radius, float height, color c, float detail = 0.5f );
 		mesh add_cone( float radius, float height, color c, float detail = 0.5f );
-		arrow add_arrow( float radius, color c, float detail = 0.5f );
+		arrow add_arrow( float radius, float head_radius, color c, float detail = 0.5f );
 		trail add_path( size_t num_points, float radius, color c, float detail = 0.5f );
 
 		void attach( object& o );

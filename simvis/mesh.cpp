@@ -8,7 +8,8 @@
 
 namespace vis
 {
-	mesh::mesh( group& parent, const string& filename )
+	mesh::mesh( group& parent, const string& filename ) :
+	group()
 	{
 		osg::ref_ptr< osg::Node > file_node;
 		if ( flut::get_filename_ext( filename ) == "vtp" )
@@ -20,10 +21,9 @@ namespace vis
 		parent.attach( *this );
 	}
 
-	mesh::mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail )
+	mesh::mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail ) :
+	group()
 	{
-		node = new osg::PositionAttitudeTransform;
-
 		auto hints = new osg::TessellationHints;
 		hints->setDetailRatio( detail );
 
@@ -35,13 +35,13 @@ namespace vis
 			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.length() ), hints );
 			break;
 		case primitive_shape::box:
-			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.x, dim.y, dim.z ) );
+			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.x, dim.y, dim.z ), hints );
 			break;
 		case primitive_shape::cylinder:
-			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ) );
+			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ), hints );
 			break;
 		case primitive_shape::cone:
-			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ) );
+			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ), hints );
 			break;
 		}
 
