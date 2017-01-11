@@ -14,6 +14,8 @@ namespace vis
 		osg_camera_man();
 		virtual ~osg_camera_man();
 
+		void setYawPitch( degree yaw, degree pitch ) { orbit_yaw = yaw; orbit_pitch = pitch; updateRotation(); }
+
 	protected:
 		virtual bool performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy );
 		virtual bool performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy );
