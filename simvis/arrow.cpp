@@ -22,7 +22,7 @@ namespace vis
 	void arrow::pos( const vec3f& begin_pos, const vec3f& end_pos )
 	{
 		vec3f dir = end_pos - begin_pos;
-		auto q = flut::math::make_quat_from_directions( vec3f::unit_z(), dir );
+		auto q = flut::math::quat_from_directions( vec3f::unit_z(), dir );
 		cylinder.pos_ori( begin_pos + 0.5f * dir, q );
 		cylinder.scale( vec3f( 1, 1, dir.length() ) );
 
