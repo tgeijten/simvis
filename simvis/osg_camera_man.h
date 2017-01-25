@@ -26,8 +26,8 @@ namespace vis
 		degree orbit_yaw;
 		degree orbit_pitch;
 
-		double pitch_scale = 5000;
-		double yaw_scale = 5000;
+		double pitch_scale = 100;
+		double yaw_scale = 100;
 		double pan_scale = 0.3;
 		double zoom_scale = 1.0;
 	};

@@ -25,8 +25,8 @@ namespace vis
 
 	bool osg_camera_man::performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy )
 	{
-		orbit_pitch += degree( eventTimeDelta * pitch_scale * dy );
-		orbit_yaw -= degree( eventTimeDelta * yaw_scale * dx );
+		orbit_pitch += degree( pitch_scale * dy );
+		orbit_yaw -= degree( yaw_scale * dx );
 
 		updateRotation();
 
