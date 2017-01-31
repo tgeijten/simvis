@@ -16,14 +16,13 @@ namespace vis
 		mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 
-		void show( bool b );
-		void pos( const vec3f& pos );
-		void ori( const quatf& ori );
-		void pos_ori( const vec3f& p, const quatf& o ) { pos( p ); ori( o ); }
-		void scale( const vec3f& s );
+		mesh& show( bool b );
+		mesh& pos( const vec3f& pos );
+		mesh& ori( const quatf& ori );
+		mesh& pos_ori( const vec3f& p, const quatf& o ) { pos( p ); ori( o ); return *this; }
+		mesh& scale( const vec3f& s );
 		
 		virtual osg::Node* osg_node() override { return node; }
-
-		virtual void transform( const transformf& t ) override;
+		virtual mesh& transform( const transformf& t ) override;
 	};
 }

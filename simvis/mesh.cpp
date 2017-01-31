@@ -66,29 +66,34 @@ namespace vis
 		}
 	}
 
-	void mesh::show( bool b )
+	mesh& mesh::show( bool b )
 	{
 		node->setNodeMask( b ? ~0 : 0 );
+		return *this;
 	}
 
-	void mesh::pos( const vec3f& pos )
+	mesh& mesh::pos( const vec3f& pos )
 	{
 		osg_trans_node().setPosition( make_osg( pos ) );
+		return *this;
 	}
 
-	void mesh::ori( const quatf& ori )
+	mesh& mesh::ori( const quatf& ori )
 	{
 		osg_trans_node().setAttitude( make_osg( ori ) );
+		return *this;
 	}
 
-	void mesh::scale( const vec3f& s )
+	mesh& mesh::scale( const vec3f& s )
 	{
 		osg_trans_node().setScale( make_osg( s ) );
+		return *this;
 	}
 
-	void mesh::transform( const transformf& t )
+	mesh& mesh::transform( const transformf& t )
 	{
 		osg_trans_node().setPosition( make_osg( t.p ) );
 		osg_trans_node().setAttitude( make_osg( t.q ) );
+		return *this;
 	}
 }

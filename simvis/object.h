@@ -18,7 +18,7 @@ namespace vis
 		material get_material();
 		bool has_parent();
 
-		virtual void transform( const transformf& t ) { FLUT_NOT_IMPLEMENTED; }
+		virtual object& transform( const transformf& t ) { FLUT_NOT_IMPLEMENTED; }
 
 		virtual osg::Node* osg_node() = 0;
 	};

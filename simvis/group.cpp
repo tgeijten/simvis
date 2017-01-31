@@ -66,10 +66,11 @@ namespace vis
 		return node->getNumChildren();
 	}
 
-	void group::transform( const transformf& t )
+	group& group::transform( const transformf& t )
 	{
 		static_cast< osg::PositionAttitudeTransform& >( *node ).setPosition( make_osg( t.p ) );
 		static_cast< osg::PositionAttitudeTransform& >( *node ).setAttitude( make_osg( t.q ) );
+		return *this;
 	}
 
 }
