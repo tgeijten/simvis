@@ -6,13 +6,13 @@ using namespace osg;
 namespace vis
 {
 	osg_camera_man::osg_camera_man() :
-		osgGA::OrbitManipulator(),
-		orbit_yaw( 0 ),
-		orbit_pitch( -5 )
+	osgGA::OrbitManipulator(),
+	orbit_yaw( 0 ),
+	orbit_pitch( -5 )
 	{
 		setAllowThrow( false );
 		_distance = 4.5;
-		_center = Vec3d( 0, 0.9, 0 );
+		_center = Vec3d( 0, 1.0, 0 );
 
 		updateRotation();
 
