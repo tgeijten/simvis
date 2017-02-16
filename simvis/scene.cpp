@@ -3,6 +3,8 @@
 #include "osgShadow/ShadowedScene"
 #include "osgShadow/SoftShadowMap"
 #include "osg_tools.h"
+#include "osgDB/ObjectCache"
+#include "osgDB/ReadFile"
 
 namespace vis
 {
@@ -41,11 +43,55 @@ namespace vis
 		mat->setShininess( osg::Material::FRONT, 25.0 );
 		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
 		node->getOrCreateStateSet()->setAttribute( mat );
+	}
 
+	void scene::create_tile_floor( int x_width, int z_width, int tile_size )
+	{
 		// create floor
-		auto ground = create_tile_floor( 64, 64, 1 );
+		auto ground = vis::create_tile_floor( x_width, z_width, tile_size );
 		set_shadow_mask( ground, true, false );
 		node->addChild( ground );
+	}
+
+	void scene::create_textured_floor( int xw, int zw, const flut::path& image )
+	{
+		float hxw = xw / 2.0f;
+		float hzw = zw / 2.0f;
+
+		osg::ref_ptr<osg::Image> testImage = osgDB::readImageFile( image.str() );
+		flut_assert( testImage.valid() );
+
+		int iw = testImage->s();
+		int ih = testImage->t();
+
+		osg::ref_ptr<osg::Texture2D> testTexture = new osg::Texture2D;
+		testTexture->setImage( testImage );
+		testTexture->setWrap( osg::Texture::WRAP_S, osg::Texture::REPEAT );
+		testTexture->setWrap( osg::Texture::WRAP_T, osg::Texture::REPEAT );
+
+		osg::ref_ptr<osg::Geometry> geom = osg::createTexturedQuadGeometry(
+			osg::Vec3( -hxw, 0.0f, hzw ),
+			osg::Vec3( xw, 0.0f, 0.0f ),
+			osg::Vec3( 0.0f, 0.0f, -zw ), 0, 0, xw, zw );
+
+		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, testTexture.get() );
+		geom->getOrCreateStateSet()->setMode( GL_DEPTH_TEST, osg::StateAttribute::ON );
+		geom->setCullingActive( true );
+
+		osg::ref_ptr<osg::Geode> geode = new osg::Geode();
+		geode->getOrCreateStateSet()->setMode( GL_CULL_FACE, osg::StateAttribute::ON );
+		set_shadow_mask( geode, true, false );
+
+		geode->addDrawable( geom );
+
+		osg::Material* mat = new osg::Material;
+		mat->setColorMode( osg::Material::EMISSION );
+		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		geode->getOrCreateStateSet()->setAttribute( mat );
+
+		node->addChild( geode );
 	}
 
 	scene::~scene() {}

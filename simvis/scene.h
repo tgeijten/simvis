@@ -14,6 +14,8 @@ namespace vis
 	{
 	public:
 		scene( bool use_shadows );
+		void create_tile_floor( int width, int heigh, int tile_size );
+		void create_textured_floor( int x_width, int z_width, const flut::path& image );
 		virtual ~scene();
 
 		light add_light( const vec3f& pos, const color& c );
