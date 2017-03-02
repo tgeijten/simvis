@@ -31,13 +31,8 @@ set(SOURCE_FILES
 	)
 
 # specify precompiled headers for MSVC
-if(MSVC)
-	set(STD_AFX_SOURCE "simvis/stdafx.cpp")
-	set(PCH_FILE "$(IntermediateOutputPath)stdafx.pch")
-	set_source_files_properties( ${STD_AFX_SOURCE} PROPERTIES COMPILE_FLAGS "/Ycstdafx.h /Fp\"${PCH_FILE}\"" OBJECT_OUTPUTS "${PCH_FILE}" )
-	set_source_files_properties( ${SOURCE_FILES} PROPERTIES COMPILE_FLAGS "/Yustdafx.h /FIstdafx.h /Fp\"${PCH_FILE}\"" OBJECT_DEPENDS "${PCH_FILE}" )
-	list( APPEND SOURCE_FILES ${STD_AFX_SOURCE} )
-endif(MSVC)
+include( PrecompiledHeaders )
+use_precompiled_headers( SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/simvis/stdafx.h" "simvis/stdafx.cpp" 256 )
 
 source_group("simvis" FILES ${SOURCE_FILES})
 
