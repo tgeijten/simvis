@@ -16,8 +16,8 @@ namespace vis
 		virtual ~axes();
 		
 	private:
-		arrow x_arrow;
-		arrow y_arrow;
-		arrow z_arrow;
+		mesh x_arrow;
+		mesh y_arrow;
+		mesh z_arrow;
 	};
 }

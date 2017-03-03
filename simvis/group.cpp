@@ -31,6 +31,11 @@ namespace vis
 		return mesh( *this, primitive_shape::cylinder, vec3f( radius, 0, height ), c, detail );
 	}
 
+	vis::mesh group::add_capsule( float radius, float height, color c, float detail )
+	{
+		return mesh( *this, primitive_shape::capsule, vec3f( radius, 0, height ), c, detail );
+	}
+
 	vis::mesh group::add_cone( float radius, float height, color c, float detail )
 	{
 		return mesh( *this, primitive_shape::cone, vec3f( radius, 0, height ), c, detail );

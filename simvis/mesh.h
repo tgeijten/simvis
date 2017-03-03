@@ -5,7 +5,7 @@
 
 namespace vis
 {
-	enum class primitive_shape { sphere, box, cylinder, cone };
+	enum class primitive_shape { sphere, box, cylinder, capsule, cone };
 
 	class SIMVIS_API mesh : public group
 	{
