@@ -49,7 +49,6 @@ namespace vis
 		}
 
 		sd->setColor( make_osg( col ) );
-
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		node->addChild( g );
@@ -91,6 +90,11 @@ namespace vis
 	{
 		osg_trans_node().setScale( make_osg( s ) );
 		return *this;
+	}
+
+	void mesh::set_color( const color& c )
+	{
+		dynamic_cast<osg::ShapeDrawable*>( node->getChild( 0 )->asGeode()->getDrawable( 0 ) )->setColor( make_osg( c ) );
 	}
 
 	mesh& mesh::transform( const transformf& t )

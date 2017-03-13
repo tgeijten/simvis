@@ -21,6 +21,7 @@ namespace vis
 		mesh& ori( const quatf& ori );
 		mesh& pos_ori( const vec3f& p, const quatf& o ) { pos( p ); ori( o ); return *this; }
 		mesh& scale( const vec3f& s );
+		void set_color( const color& c );
 		
 		virtual osg::Node* osg_node() override { return node; }
 		virtual mesh& transform( const transformf& t ) override;

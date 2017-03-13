@@ -12,6 +12,7 @@ namespace vis
 	{
 		setAllowThrow( false );
 		_distance = 4.5;
+		_minimumDistance = 0.001;
 		_center = Vec3d( 0, 1.0, 0 );
 
 		updateRotation();
