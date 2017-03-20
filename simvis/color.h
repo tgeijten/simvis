@@ -29,4 +29,28 @@ namespace vis
 	inline color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br*(1-sat), br ); }
 	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
 	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
+
+	inline color make_from_hsv( float H, float S, float V )
+	{
+		H = fmod( H, 360. ) / 60.;
+		float fract = H - floor(H);
+		float P = V * ( 1. - S );
+		float Q = V *( 1. - S*fract );
+		float T = V*( 1. - S*( 1. - fract ) );
+
+		if ( 0. <= H && H < 1. )
+			return color( V, T, P );
+		else if ( 1. <= H && H < 2. )
+			return color( Q, V, P );
+		else if ( 2. <= H && H < 3. )
+			return color( P, V, T );
+		else if ( 3. <= H && H < 4. )
+			return color( P, Q, V );
+		else if ( 4. <= H && H < 5. )
+			return color( T, P, V );
+		else if ( 5. <= H && H < 6. )
+			return color( V, P, Q );
+		else
+			return color( 0., 0., 0. );
+	}
 }
