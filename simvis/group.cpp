@@ -77,5 +77,4 @@ namespace vis
 		static_cast< osg::PositionAttitudeTransform& >( *node ).setAttitude( make_osg( t.q ) );
 		return *this;
 	}
-
 }
