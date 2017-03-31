@@ -20,4 +20,11 @@ namespace vis
 	axes::~axes()
 	{
 	}
+
+	void axes::show( bool s )
+	{
+		x_arrow.show( s );
+		y_arrow.show( s );
+		z_arrow.show( s );
+	}
 }
