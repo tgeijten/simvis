@@ -41,6 +41,14 @@ namespace vis
 		_rotation = pitch * yaw;
 	}
 
+	bool osg_camera_man::handleKeyDown( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us )
+	{
+		// filter out space key because we don't want it to reset the camera
+		if ( ea.getKey() != osgGA::GUIEventAdapter::KEY_Space )
+			return osgGA::OrbitManipulator::handleKeyDown( ea, us );
+		else return false;
+	}
+
 	bool osg_camera_man::performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy )
 	{
 		zoomModel( dy * zoom_scale, false );
