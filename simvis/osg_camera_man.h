@@ -21,6 +21,7 @@ namespace vis
 		virtual bool performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy );
 		virtual bool performMovementRightMouseButton( const double eventTimeDelta, const double dx, const double dy );
 		void updateRotation();
+		virtual bool handleKeyDown( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us ) override;
 
 	private:
 		degree orbit_yaw;
