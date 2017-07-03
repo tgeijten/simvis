@@ -9,7 +9,7 @@ namespace vis
 	{
 		color() : r( 0.0f ), g( 0.0f ), b( 0.0f ), a( 1.0f ) {}
 		color( float pr, float pg, float pb, float pa = 1.0f ) : r( pr ), g( pg ), b( pb ), a( pb ) {}
-		color( double pr, double pg, double pb, double pa = 1.0 ) : r( pr ), g( pg ), b( pb ), a( pb ) {}
+		color( double pr, double pg, double pb, double pa = 1.0 ) : r( float( pr ) ), g( float( pg ) ), b( float( pb ) ), a( float( pb ) ) {}
 
 		float r, g, b, a;
 	};
@@ -30,27 +30,5 @@ namespace vis
 	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
 	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
 
-	inline color make_from_hsv( float H, float S, float V )
-	{
-		H = fmod( H, 360. ) / 60.;
-		float fract = H - floor(H);
-		float P = V * ( 1. - S );
-		float Q = V *( 1. - S*fract );
-		float T = V*( 1. - S*( 1. - fract ) );
-
-		if ( 0. <= H && H < 1. )
-			return color( V, T, P );
-		else if ( 1. <= H && H < 2. )
-			return color( Q, V, P );
-		else if ( 2. <= H && H < 3. )
-			return color( P, V, T );
-		else if ( 3. <= H && H < 4. )
-			return color( P, Q, V );
-		else if ( 4. <= H && H < 5. )
-			return color( T, P, V );
-		else if ( 5. <= H && H < 6. )
-			return color( V, P, Q );
-		else
-			return color( 0., 0., 0. );
-	}
+	SIMVIS_API color make_from_hsv( float H, float S, float V );
 }
