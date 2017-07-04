@@ -8,6 +8,7 @@ set(SOURCE_FILES
 	"simvis/axes.cpp"
 	"simvis/axes.h"
 	"simvis/color.h"
+	"simvis/color.cpp"
 	"simvis/group.h"
 	"simvis/group.cpp"
 	"simvis/light.h"
