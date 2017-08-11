@@ -34,4 +34,5 @@ namespace vis
 	using flut::math::transformf;
 	using flut::math::degreef;
 	using flut::math::radianf;
+	using flut::path;
 }

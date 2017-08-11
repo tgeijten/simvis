@@ -11,7 +11,7 @@ namespace vis
 		node = new osg::PositionAttitudeTransform;
 	}
 
-	mesh group::add_mesh( const string& filename )
+	mesh group::add_mesh( const path& filename )
 	{
 		return mesh( *this, filename );
 	}

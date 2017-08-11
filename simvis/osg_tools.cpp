@@ -70,7 +70,7 @@ namespace vis
 		return geode;
 	}
 
-	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const string& filename )
+	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const path& filename )
 	{
 		prop_node root_pn = load_xml( filename );
 		prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];

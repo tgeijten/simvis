@@ -8,14 +8,14 @@
 
 namespace vis
 {
-	mesh::mesh( group& parent, const string& filename ) :
+	mesh::mesh( group& parent, const path& filename ) :
 	group()
 	{
 		osg::ref_ptr< osg::Node > file_node;
-		if ( flut::get_filename_ext( filename ) == "vtp" )
+		if ( filename.extension() == "vtp" )
 			file_node = read_vtp( filename );
 		else
-			file_node = osgDB::readNodeFile( filename );
+			file_node = osgDB::readNodeFile( filename.str() );
 
 		node->addChild( file_node );
 		parent.attach( *this );
