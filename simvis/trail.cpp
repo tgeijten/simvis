@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "trail.h"
 #include "scene.h"
-#include <flut/math/vec3.hpp>
-#include "flut/math/quat.hpp"
+#include "xo/geometry/vec3.h"
+#include "xo/geometry/quat.h"
 
 namespace vis
 {
@@ -16,7 +16,7 @@ namespace vis
 	}
 
 	template< typename T >
-	void trail::set_points( const std::vector< flut::math::vec3_<T> >& pvec )
+	void trail::set_points( const std::vector< xo::vec3_<T> >& pvec )
 	{
 		if ( pvec.size() != points.size() )
 			add_remove_points( pvec.size() );

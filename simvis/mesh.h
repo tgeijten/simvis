@@ -2,7 +2,7 @@
 
 #include "object.h"
 #include "group.h"
-#include "flut/system/path.hpp"
+#include "xo/filesystem/path.h"
 
 namespace vis
 {
@@ -13,7 +13,7 @@ namespace vis
 	public:
 		mesh() : group() {}
 		mesh( const mesh& other ) : group( other ) {}
-		mesh( group& parent, const flut::path& filename );
+		mesh( group& parent, const xo::path& filename );
 		mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 

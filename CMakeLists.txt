@@ -39,9 +39,9 @@ source_group("simvis" FILES ${SOURCE_FILES})
 
 add_library(simvis SHARED ${SOURCE_FILES})
 
-# FLUT
-find_path(FLUT_INCLUDE_DIR NAMES "flut/system/types.hpp" PATHS "${FLUT_DIR}")
-include_directories( ${FLUT_INCLUDE_DIR} )
+# XO
+# find_path(XO_INCLUDE_DIR NAMES "xo/system/platform.h" PATHS "${XO_DIR}")
+include_directories( ${XO_INCLUDE_DIR} )
 
 # OpenSceneGraph
 set(OSG_DIR "" CACHE PATH "Installation directory of OpenSceneGraph")
@@ -57,7 +57,7 @@ FIND_PACKAGE( OpenThreads )
 INCLUDE_DIRECTORIES(${OSG_INCLUDE_DIR})
 
 target_link_libraries(simvis
-	flut
+	xo
 	${OSG_LIBRARIES}
 	${OSGWIDGET_LIBRARIES}
 	${OSGGA_LIBRARIES}
