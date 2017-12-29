@@ -15,7 +15,7 @@ namespace vis
 		virtual ~trail() {}
 
 		template< typename T >
-		void set_points( const std::vector< flut::math::vec3_<T> >& pvec );
+		void set_points( const std::vector< xo::vec3_<T> >& pvec );
 
 		virtual osg::Node* osg_node() override { return parent.osg_node(); }
 
@@ -30,6 +30,6 @@ namespace vis
 		std::vector< mesh > cylinders;
 	};
 
-	template SIMVIS_API void trail::set_points( const std::vector< flut::math::vec3_< float > >& );
-	template SIMVIS_API void trail::set_points( const std::vector< flut::math::vec3_< double > >& );
+	template SIMVIS_API void trail::set_points( const std::vector< xo::vec3_< float > >& );
+	template SIMVIS_API void trail::set_points( const std::vector< xo::vec3_< double > >& );
 }

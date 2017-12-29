@@ -1,5 +1,5 @@
 #include "osg_camera_man.h"
-#include "flut/system/log_sink.hpp"
+#include "xo/system/log_sink.h"
 
 using namespace osg;
 

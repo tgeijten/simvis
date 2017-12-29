@@ -10,10 +10,10 @@
 #	define SIMVIS_API
 #endif
 
-#include "flut/math/vec3_type.hpp"
-#include "flut/math/vec4_type.hpp"
-#include "flut/math/quat_type.hpp"
-#include "flut/math/transform.hpp"
+#include "xo/geometry/vec3_type.h"
+#include "xo/geometry/vec4_type.h"
+#include "xo/geometry/quat_type.h"
+#include "xo/geometry/transform.h"
 #include <string>
 
 namespace vis
@@ -28,11 +28,11 @@ namespace vis
 
 	using std::string;
 
-	using flut::math::vec3f;
-	using flut::math::vec4f;
-	using flut::math::quatf;
-	using flut::math::transformf;
-	using flut::math::degreef;
-	using flut::math::radianf;
-	using flut::path;
+	using xo::vec3f;
+	using xo::vec4f;
+	using xo::quatf;
+	using xo::transformf;
+	using xo::degreef;
+	using xo::radianf;
+	using xo::path;
 }

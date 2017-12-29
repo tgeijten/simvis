@@ -1,7 +1,7 @@
 #include "axes.h"
 
 #include "arrow.h"
-#include "flut/math/quat.hpp"
+#include "xo/geometry/quat.h"
 
 namespace vis
 {
@@ -12,8 +12,8 @@ namespace vis
 		y_arrow = add_capsule( radius, length.y, make_green(), detail );
 		z_arrow = add_capsule( radius, length.z, make_blue(), detail );
 
-		x_arrow.pos_ori( vec3f( 0.5f * length.x, 0, 0 ), flut::math::quat_from_euler( degreef( 0 ), degreef( 90 ), degreef( 0 ) ) );
-		y_arrow.pos_ori( vec3f( 0, 0.5f * length.y, 0 ), flut::math::quat_from_euler( degreef( 90 ), degreef( 0 ), degreef( 0 ) ) );
+		x_arrow.pos_ori( vec3f( 0.5f * length.x, 0, 0 ), xo::quat_from_euler( degreef( 0 ), degreef( 90 ), degreef( 0 ) ) );
+		y_arrow.pos_ori( vec3f( 0, 0.5f * length.y, 0 ), xo::quat_from_euler( degreef( 90 ), degreef( 0 ), degreef( 0 ) ) );
 		z_arrow.pos( vec3f( 0, 0, 0.5f * length.z ) );
 	}
 

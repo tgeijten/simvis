@@ -4,7 +4,7 @@
 #include "osg/ShapeDrawable"
 #include "scene.h"
 #include "osg/Material"
-#include "flut/string_tools.hpp"
+#include "xo/string/string_tools.h"
 
 namespace vis
 {

@@ -2,12 +2,12 @@
 
 #include <osg/Geometry>
 #include "osg/Material"
-#include "flut/prop_node.hpp"
-#include "flut/system/log.hpp"
-#include "flut/timer.hpp"
-#include "flut/prop_node_tools.hpp"
+#include "xo/container/prop_node.h"
+#include "xo/system/log.h"
+#include "xo/time/timer.h"
+#include "xo/stream/prop_node_tools.h"
 
-using namespace flut;
+using namespace xo;
 
 namespace vis
 {
@@ -84,7 +84,7 @@ namespace vis
 		auto normal_vec = str_to_vec< float >( poly_pn[ "PointData" ][ "DataArray" ].get_value(), point_count * 3 );
 		auto point_vec = str_to_vec< float >( poly_pn[ "Points" ][ "DataArray" ].get_value(), point_count * 3 );
 
-		flut_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
+		xo_assert( normal_vec.size() == point_count * 3 && point_vec.size() == point_count * 3 );
 
 		size_t vec_idx = 0;
 		for ( int idx = 0; idx < point_count; ++idx )
@@ -122,7 +122,7 @@ namespace vis
 				else
 				{
 					// silently ignore...
-					//flut::log::warning( "Unknown primitive type, number of vertices = ", num_ver );
+					//xo::log::warning( "Unknown primitive type, number of vertices = ", num_ver );
 				}
 			}
 		}

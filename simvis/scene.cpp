@@ -53,13 +53,13 @@ namespace vis
 		node->addChild( ground );
 	}
 
-	void scene::create_textured_floor( int xw, int zw, const flut::path& image )
+	void scene::create_textured_floor( int xw, int zw, const xo::path& image )
 	{
 		float hxw = xw / 2.0f;
 		float hzw = zw / 2.0f;
 
 		osg::ref_ptr<osg::Image> testImage = osgDB::readImageFile( image.str() );
-		flut_assert( testImage.valid() );
+		xo_assert( testImage.valid() );
 
 		int iw = testImage->s();
 		int ih = testImage->t();

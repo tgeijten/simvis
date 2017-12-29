@@ -2,11 +2,11 @@
 
 #include "prerequisites.h"
 #include <osgGA/OrbitManipulator>
-#include "flut/math/angle.hpp"
+#include "xo/geometry/angle.h"
 
 namespace vis
 {
-	using degree = flut::math::degree;
+	using degree = xo::degree;
 
 	class SIMVIS_API osg_camera_man : public osgGA::OrbitManipulator
 	{
