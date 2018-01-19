@@ -6,6 +6,7 @@
 #include "xo/system/log.h"
 #include "xo/time/timer.h"
 #include "xo/serialization/prop_node_tools.h"
+#include "xo/serialization/serialize.h"
 
 using namespace xo;
 
