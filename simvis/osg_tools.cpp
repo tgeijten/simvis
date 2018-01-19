@@ -5,7 +5,7 @@
 #include "xo/container/prop_node.h"
 #include "xo/system/log.h"
 #include "xo/time/timer.h"
-#include "xo/stream/prop_node_tools.h"
+#include "xo/serialization/prop_node_tools.h"
 
 using namespace xo;
 
