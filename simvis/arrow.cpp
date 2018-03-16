@@ -6,9 +6,8 @@
 
 namespace vis
 {
-	arrow::arrow( group& parent, float radius, float head_radius, const color& c, float detail )
+	arrow::arrow( float radius, float head_radius, const color& c, float detail )
 	{
-		parent.attach( root );
 		cylinder = root.add_cylinder( radius, 1, c, detail );
 
 		if ( head_radius > 0.0f )

@@ -11,7 +11,7 @@ namespace vis
 	{
 	public:
 		trail() {}
-		trail( group& scene, size_t num_points, float radius, color c, float detail = 0.5f );
+		trail( size_t num_points, float radius, color c, float detail = 0.5f );
 		virtual ~trail() {}
 
 		template< typename T >

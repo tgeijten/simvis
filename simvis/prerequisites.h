@@ -18,6 +18,7 @@
 
 namespace vis
 {
+	class axes;
 	class group;
 	class scene;
 	class mesh;

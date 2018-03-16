@@ -6,12 +6,11 @@
 
 namespace vis
 {
-	trail::trail( group& scene, size_t num_points, float radius, color c, float detail ) :
+	trail::trail( size_t num_points, float radius, color c, float detail ) :
 	radius( radius ),
 	col( c ),
 	detail( detail )
 	{
-		scene.attach( parent );
 		add_remove_points( num_points );
 	}
 

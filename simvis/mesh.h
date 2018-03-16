@@ -13,8 +13,8 @@ namespace vis
 	public:
 		mesh() : group() {}
 		mesh( const mesh& other ) : group( other ) {}
-		mesh( group& parent, const xo::path& filename );
-		mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
+		mesh( const xo::path& filename );
+		mesh( primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 
 		mesh& show( bool b );

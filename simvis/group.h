@@ -20,7 +20,11 @@ namespace vis
 		mesh add_capsule( float radius, float height, color c, float detail = 0.5f );
 		mesh add_cone( float radius, float height, color c, float detail = 0.5f );
 		arrow add_arrow( float radius, float head_radius, color c, float detail = 0.5f );
-		trail add_path( size_t num_points, float radius, color c, float detail = 0.5f );
+		axes add_axes( vec3f length, float detail = 0.5f );
+		trail add_trail( size_t num_points, float radius, color c, float detail = 0.5f );
+		group add_group();
+
+		template< typename T, typename... Args > T add( Args&&... a ) { T o( std::forward< Args >( a )... ); attach( o ); return o; }
 
 		void attach( object& o );
 		void detach( object& o );

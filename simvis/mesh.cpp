@@ -8,7 +8,7 @@
 
 namespace vis
 {
-	mesh::mesh( group& parent, const path& filename ) :
+	mesh::mesh( const path& filename ) :
 	group()
 	{
 		osg::ref_ptr< osg::Node > file_node;
@@ -16,12 +16,10 @@ namespace vis
 			file_node = read_vtp( filename );
 		else
 			file_node = osgDB::readNodeFile( filename.str() );
-
 		node->addChild( file_node );
-		parent.attach( *this );
 	}
 
-	mesh::mesh( group& parent, primitive_shape shape, const vec3f& dim, const color& col, float detail ) :
+	mesh::mesh( primitive_shape shape, const vec3f& dim, const color& col, float detail ) :
 	group()
 	{
 		auto hints = new osg::TessellationHints;
@@ -52,10 +50,6 @@ namespace vis
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		node->addChild( g );
-
-		//set_color( col );
-
-		parent.attach( *this );
 	}
 
 	mesh::~mesh()
