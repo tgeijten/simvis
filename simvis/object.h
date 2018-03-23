@@ -1,7 +1,6 @@
 #pragma once
 
 #include "prerequisites.h"
-#include "color.h"
 #include "material.h"
 #include "xo/geometry/transform.h"
 

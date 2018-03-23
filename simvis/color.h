@@ -31,4 +31,7 @@ namespace vis
 	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
 
 	SIMVIS_API color make_from_hsv( float H, float S, float V );
+
+	inline std::ostream& operator<<( std::ostream& str, const vis::color c ) { return str << c.r << ' ' << c.g << ' ' << c.b << ' ' << c.a; }
+	inline std::istream& operator>>( std::istream& str, vis::color& c ) { return str >> c.r >> c.g >> c.b >> c.a; }
 }

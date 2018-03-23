@@ -1,4 +1,5 @@
 #include "object.h"
+
 #include "osg/Group"
 #include "osg/Material"
 #include "osg_tools.h"

@@ -14,13 +14,22 @@ namespace vis
 		trail( size_t num_points, float radius, color c, float detail = 0.5f );
 		virtual ~trail() {}
 
-		template< typename T >
-		void set_points( const std::vector< xo::vec3_<T> >& pvec );
+		template< typename Iter >
+		void set_points( Iter b, Iter e )
+		{
+			if ( e - b != points.size() ) resize( e - b );
+			for ( size_t i = 0; i < points.size(); ++i ) points[ i ].pos( *( b + i ) );
+			for ( size_t i = 0; i < cylinders.size(); ++i ) {
+				auto delta = *( b + i + 1 ) - *( b + i );
+				cylinders[ i ].pos_ori( *( b + i ) + 0.5f * delta, quat_from_directions( vec3f::unit_z(), vec3f( normalized( delta ) ) ) );
+				cylinders[ i ].scale( vec3f( 1.0f, 1.0f, delta.length() ) );
+			}
+		}
 
 		virtual osg::Node* osg_node() override { return parent.osg_node(); }
 
 	private:
-		void add_remove_points( size_t num_points );
+		void resize( size_t num_points );
 
 		color col;
 		float detail;
@@ -29,7 +38,4 @@ namespace vis
 		std::vector< mesh > points;
 		std::vector< mesh > cylinders;
 	};
-
-	template SIMVIS_API void trail::set_points( const std::vector< xo::vec3_< float > >& );
-	template SIMVIS_API void trail::set_points( const std::vector< xo::vec3_< double > >& );
 }

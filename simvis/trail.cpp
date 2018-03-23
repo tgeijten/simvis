@@ -11,28 +11,10 @@ namespace vis
 	col( c ),
 	detail( detail )
 	{
-		add_remove_points( num_points );
+		resize( num_points );
 	}
 
-	template< typename T >
-	void trail::set_points( const std::vector< xo::vec3_<T> >& pvec )
-	{
-		if ( pvec.size() != points.size() )
-			add_remove_points( pvec.size() );
-
-		for ( size_t i = 0; i < points.size(); ++i )
-			points[ i ].pos( pvec[ i ] );
-
-		for ( size_t i = 0; i < cylinders.size(); ++i )
-		{
-			auto delta = pvec[ i + 1 ] - pvec[ i ];
-			cylinders[ i ].pos( pvec[ i ] + T(0.5) * delta );
-			cylinders[ i ].ori( quat_from_directions( vec3f::unit_z(), vec3f( normalized( delta ) ) ) );
-			cylinders[ i ].scale( vec3f( 1.0f, 1.0f, delta.length() ) );
-		}
-	}
-
-	void trail::add_remove_points( size_t num_points )
+	void trail::resize( size_t num_points )
 	{
 		size_t num_cylinders = num_points > 0 ? num_points - 1 : 0;
 

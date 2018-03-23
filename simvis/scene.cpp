@@ -45,10 +45,10 @@ namespace vis
 		node->getOrCreateStateSet()->setAttribute( mat );
 	}
 
-	void scene::create_tile_floor( int x_width, int z_width, int tile_size )
+	void scene::create_tile_floor( int x_width, int z_width, int tile_size, color a, color b )
 	{
 		// create floor
-		auto ground = vis::create_tile_floor( x_width, z_width, tile_size );
+		auto ground = vis::create_tile_floor( x_width, z_width, tile_size, a, b );
 		set_shadow_mask( ground, true, false );
 		node->addChild( ground );
 	}
