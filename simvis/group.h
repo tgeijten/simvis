@@ -27,6 +27,8 @@ namespace vis
 		template< typename T, typename... Args > T add( Args&&... a ) { T o( std::forward< Args >( a )... ); attach( o ); return o; }
 
 		void attach( object& o );
+		template< typename... Args > void attach( object& o, Args&... args ) { attach( o ); attach( args... ); }
+
 		void detach( object& o );
 		void detach_all();
 		size_t size();
