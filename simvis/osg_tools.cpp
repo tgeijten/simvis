@@ -73,7 +73,7 @@ namespace vis
 
 	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const path& filename )
 	{
-		prop_node root_pn = load_xml( filename );
+		prop_node root_pn = load_file( filename, "xml" );
 		prop_node& poly_pn = root_pn[ "VTKFile" ][ "PolyData" ][ "Piece" ];
 		auto point_count = poly_pn.get< int >( "NumberOfPoints");
 		auto poly_count = poly_pn.get< int >( "NumberOfPolys" );
