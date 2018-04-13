@@ -4,9 +4,12 @@
 #include "trail.h"
 #include "osg_tools.h"
 #include "axes.h"
+#include "xo/geometry/shape.h"
 
 namespace vis
 {
+	using xo::shape;
+
 	group::group()
 	{
 		node = new osg::PositionAttitudeTransform;
@@ -21,35 +24,35 @@ namespace vis
 
 	mesh group::add_sphere( float radius, color c, float detail )
 	{
-		mesh m( primitive_shape::sphere, vec3f( radius, 0, 0 ), c, detail );
+		mesh m( shape( shape::sphere, radius ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cube( vec3f dim, color c )
 	{
-		mesh m( primitive_shape::box, dim, c );
+		mesh m( shape( shape::box, dim.x, dim.y, dim.z ), c );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cylinder( float radius, float height, color c, float detail )
 	{
-		mesh m( primitive_shape::cylinder, vec3f( radius, 0, height ), c, detail );
+		mesh m( shape( shape::cylinder, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_capsule( float radius, float height, color c, float detail )
 	{
-		mesh m( primitive_shape::capsule, vec3f( radius, 0, height ), c, detail );
+		mesh m( shape( shape::capsule, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_cone( float radius, float height, color c, float detail )
 	{
-		mesh m( primitive_shape::cone, vec3f( radius, 0, height ), c, detail );
+		mesh m( shape( shape::cone, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
@@ -61,14 +64,14 @@ namespace vis
 		return m;
 	}
 
-	axes group::add_axes( vec3f length, float detail /*= 0.5f */ )
+	axes group::add_axes( vec3f length, float detail )
 	{
 		axes a( length, detail );
 		attach( a );
 		return a;
 	}
 
-	trail group::add_trail( size_t num_points, float radius, color c, float detail /*= 0.5f */ )
+	trail group::add_trail( size_t num_points, float radius, color c, float detail )
 	{
 		trail t( num_points, radius, c, detail );
 		attach( t );

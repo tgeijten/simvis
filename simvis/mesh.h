@@ -3,18 +3,17 @@
 #include "object.h"
 #include "group.h"
 #include "xo/filesystem/path.h"
+#include "xo/geometry/shape.h"
 
 namespace vis
 {
-	enum class primitive_shape { sphere, box, cylinder, capsule, cone };
-
 	class SIMVIS_API mesh : public group
 	{
 	public:
 		mesh() : group() {}
 		mesh( const mesh& other ) : group( other ) {}
 		mesh( const xo::path& filename );
-		mesh( primitive_shape shape, const vec3f& dim, const color& col, float detail = 1.0f );
+		mesh( const xo::shape& shape, const color& col, float detail = 1.0f );
 		virtual ~mesh();
 
 		mesh& show( bool b );

@@ -8,6 +8,8 @@
 
 namespace vis
 {
+	using xo::shape;
+
 	mesh::mesh( const path& filename ) :
 	group()
 	{
@@ -19,7 +21,7 @@ namespace vis
 		node->addChild( file_node );
 	}
 
-	mesh::mesh( primitive_shape shape, const vec3f& dim, const color& col, float detail ) :
+	mesh::mesh( const shape& s, const color& col, float detail ) :
 	group()
 	{
 		auto hints = new osg::TessellationHints;
@@ -27,22 +29,22 @@ namespace vis
 
 		osg::ref_ptr< osg::ShapeDrawable > sd;
 
-		switch ( shape )
+		switch ( s.type() )
 		{
-		case primitive_shape::sphere:
-			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.length() ), hints );
+		case shape::sphere:
+			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius() ), hints );
 			break;
-		case primitive_shape::box:
-			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), dim.x, dim.y, dim.z ), hints );
+		case shape::box:
+			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.x(), s.y(), s.z() ), hints );
 			break;
-		case primitive_shape::cylinder:
-			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ), hints );
+		case shape::cylinder:
+			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
-		case primitive_shape::capsule:
-			sd = new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ), hints );
+		case shape::capsule:
+			sd = new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
-		case primitive_shape::cone:
-			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), sqrt( dim.x * dim.x + dim.y * dim.y ), dim.z ), hints );
+		case shape::cone:
+			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
 		}
 
