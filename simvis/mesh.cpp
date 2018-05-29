@@ -9,6 +9,7 @@
 namespace vis
 {
 	using xo::shape;
+	using xo::shape_type;
 
 	mesh::mesh( const path& filename ) :
 	group()
@@ -31,19 +32,19 @@ namespace vis
 
 		switch ( s.type() )
 		{
-		case shape::sphere:
+		case shape_type::sphere:
 			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius() ), hints );
 			break;
-		case shape::box:
+		case shape_type::box:
 			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.x(), s.y(), s.z() ), hints );
 			break;
-		case shape::cylinder:
+		case shape_type::cylinder:
 			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
-		case shape::capsule:
+		case shape_type::capsule:
 			sd = new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
-		case shape::cone:
+		case shape_type::cone:
 			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
 		}

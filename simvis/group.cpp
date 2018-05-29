@@ -9,6 +9,7 @@
 namespace vis
 {
 	using xo::shape;
+	using xo::shape_type;
 
 	group::group()
 	{
@@ -24,35 +25,35 @@ namespace vis
 
 	mesh group::add_sphere( float radius, color c, float detail )
 	{
-		mesh m( shape( shape::sphere, radius ), c, detail );
+		mesh m( shape( shape_type::sphere, radius ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cube( vec3f dim, color c )
 	{
-		mesh m( shape( shape::box, dim.x, dim.y, dim.z ), c );
+		mesh m( shape( shape_type::box, dim.x, dim.y, dim.z ), c );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cylinder( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape::cylinder, radius, height ), c, detail );
+		mesh m( shape( shape_type::cylinder, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_capsule( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape::capsule, radius, height ), c, detail );
+		mesh m( shape( shape_type::capsule, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_cone( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape::cone, radius, height ), c, detail );
+		mesh m( shape( shape_type::cone, radius, height ), c, detail );
 		attach( m );
 		return m;
 	}
