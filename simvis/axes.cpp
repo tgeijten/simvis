@@ -5,7 +5,7 @@
 
 namespace vis
 {
-	axes::axes( vec3f length, float radius, float head_radius, float detail )
+	axes::axes( vec3f length, float radius, float detail )
 	{
 		x_arrow = add_capsule( radius, length.x, make_red(), detail );
 		y_arrow = add_capsule( radius, length.y, make_green(), detail );
