@@ -33,6 +33,8 @@ namespace vis
 
 		void detach( object& o );
 		void detach_all();
+		void release();
+
 		size_t size();
 
 		osg::Group& osg_group() { return *node; }

@@ -19,7 +19,6 @@ namespace vis
 	inline osg::Quat make_osg( const quatf& v ) { return osg::Quat( v.x, v.y, v.z, v.w ); }
 	inline osg::Vec4f make_osg( const color& v ) { return osg::Vec4f( v.r, v.g, v.b, v.a ); }
 
-	SIMVIS_API osg::Geode* create_tile_floor( int x_tiles, int z_tiles, float tile_width, color a, color b );
 	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const xo::path& filename );
 
 	SIMVIS_API void set_shadow_mask( osg::Node* n, bool receive, bool cast );

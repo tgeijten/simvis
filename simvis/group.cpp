@@ -18,12 +18,7 @@ namespace vis
 
 	group::~group()
 	{
-		if ( node && node->referenceCount() == node->getNumParents() + 1 )
-		{
-			// this is the last ref, so remove all parents
-			while ( node->getNumParents() > 0 )
-				node->getParent( 0 )->removeChild( node );
-		}
+		release();
 	}
 
 	mesh group::add_mesh( const path& filename )
@@ -109,6 +104,16 @@ namespace vis
 	void group::detach_all()
 	{
 		node->removeChildren( 0, node->getNumChildren() );
+	}
+
+	void group::release()
+	{
+		if ( node && node->referenceCount() == node->getNumParents() + 1 )
+		{
+			// this is the last ref, so remove from all parents
+			while ( node->getNumParents() > 0 )
+				node->getParent( 0 )->removeChild( node );
+		}
 	}
 
 	size_t group::size()
