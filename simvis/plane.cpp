@@ -24,8 +24,8 @@ namespace vis
 		testTexture->setMaxAnisotropy( 8.0f );
 
 		osg::ref_ptr<osg::Geometry> geom = osg::createTexturedQuadGeometry(
-			osg::Vec3( -hxw, 0.0f, hzw ),
-			osg::Vec3( xw, 0.0f, 0.0f ),
+			osg::Vec3( 0.0f, hxw, hzw ),
+			osg::Vec3( 0.0f, -xw, 0.0f ),
 			osg::Vec3( 0.0f, 0.0f, -zw ), 0, 0, xw / 2, zw / 2 );
 
 		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, testTexture.get() );
