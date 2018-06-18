@@ -16,6 +16,16 @@ namespace vis
 		node = new osg::PositionAttitudeTransform;
 	}
 
+	group::~group()
+	{
+		if ( node && node->referenceCount() == node->getNumParents() + 1 )
+		{
+			// this is the last ref, so remove all parents
+			while ( node->getNumParents() > 0 )
+				node->getParent( 0 )->removeChild( node );
+		}
+	}
+
 	mesh group::add_mesh( const path& filename )
 	{
 		mesh m( filename );
@@ -106,10 +116,19 @@ namespace vis
 		return node->getNumChildren();
 	}
 
-	group& group::transform( const transformf& t )
+	void group::transform( const transformf& t )
 	{
 		static_cast< osg::PositionAttitudeTransform& >( *node ).setPosition( make_osg( t.p ) );
 		static_cast< osg::PositionAttitudeTransform& >( *node ).setAttitude( make_osg( t.q ) );
-		return *this;
+	}
+
+	void group::pos( const vec3f& p )
+	{
+		static_cast<osg::PositionAttitudeTransform&>( *node ).setPosition( make_osg( p ) );
+	}
+
+	void group::ori( const quatf& q )
+	{
+		static_cast<osg::PositionAttitudeTransform&>( *node ).setAttitude( make_osg( q ) );
 	}
 }

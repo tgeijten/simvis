@@ -17,8 +17,10 @@ namespace vis
 		material get_material();
 		bool has_parent();
 
-		virtual object& transform( const transformf& t ) { XO_NOT_IMPLEMENTED; }
-
+		virtual void transform( const transformf& t ) { XO_NOT_IMPLEMENTED; }
+		virtual void pos( const vec3f& p ) { XO_NOT_IMPLEMENTED; }
+		virtual void ori( const quatf& q ) { XO_NOT_IMPLEMENTED; }
+		virtual void pos_ori( const vec3f& p, const quatf& q ) { pos( p ); ori( q ); }
 		virtual osg::Node* osg_node() = 0;
 	};
 }

@@ -19,6 +19,8 @@ set(SOURCE_FILES
 	"simvis/material.h"
 	"simvis/object.cpp"
 	"simvis/object.h"
+	"simvis/plane.cpp"
+	"simvis/plane.h"
 	"simvis/trail.cpp"
 	"simvis/trail.h"
 	"simvis/prerequisites.h"

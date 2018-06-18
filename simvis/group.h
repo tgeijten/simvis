@@ -2,6 +2,8 @@
 
 #include "object.h"
 #include <osg/PositionAttitudeTransform>
+#include "xo/geometry/vec3_type.h"
+#include "xo/geometry/quat_type.h"
 
 namespace vis
 {
@@ -11,7 +13,7 @@ namespace vis
 		group();
 		group( const group& other ) : node( other.node ) {}
 		group& operator=( const group& other ) { node = other.node; return *this; }
-		virtual ~group() {}
+		virtual ~group();
 
 		mesh add_mesh( const path& filename );
 		mesh add_sphere( float radius, color c, float detail = 0.5f );
@@ -36,7 +38,9 @@ namespace vis
 		osg::Group& osg_group() { return *node; }
 		virtual osg::Node* osg_node() override { return node; }
 
-		virtual group& transform( const transformf& t ) override;
+		virtual void transform( const transformf& t ) override;
+		virtual void pos( const vec3f& p ) override;
+		virtual void ori( const quatf& q ) override;
 
 	protected:
 		osg::ref_ptr< osg::Group > node;
