@@ -47,6 +47,7 @@ namespace vis
 		case shape_type::cone:
 			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
 			break;
+		default: xo_error( "Cannot create mesh from " + s.name() );
 		}
 
 		sd->setColor( make_osg( col ) );
