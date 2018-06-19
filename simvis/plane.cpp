@@ -6,14 +6,10 @@
 
 namespace vis
 {
-	plane::plane( float xw, float zw, const xo::path& image )
+	plane::plane( const vec3f& width, const vec3f& height, const xo::path& image )
 	{
-		float hxw = xw / 2.0f;
-		float hzw = zw / 2.0f;
-
 		osg::ref_ptr<osg::Image> testImage = osgDB::readImageFile( image.str() );
 		xo_assert( testImage.valid() );
-
 		int iw = testImage->s();
 		int ih = testImage->t();
 
@@ -24,9 +20,10 @@ namespace vis
 		testTexture->setMaxAnisotropy( 8.0f );
 
 		osg::ref_ptr<osg::Geometry> geom = osg::createTexturedQuadGeometry(
-			osg::Vec3( 0.0f, hxw, hzw ),
-			osg::Vec3( 0.0f, -xw, 0.0f ),
-			osg::Vec3( 0.0f, 0.0f, -zw ), 0, 0, xw / 2, zw / 2 );
+			make_osg( -0.5f * width + -0.5f * height ),
+			make_osg( width ),
+			make_osg( height ),
+			0, 0, 0.5f * width.length(), 0.5f * height.length() );
 
 		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, testTexture.get() );
 		geom->getOrCreateStateSet()->setMode( GL_DEPTH_TEST, osg::StateAttribute::ON );
@@ -71,7 +68,9 @@ namespace vis
 		{
 			for ( int ix = 0; ix < x_tiles; ++ix )
 			{
-				osg::DrawElementsUShort* primitives = ( ( iz + ix ) % 2 == 0 ) ? whitePrimitives.get() : blackPrimitives.get();
+				//bool black = ( iz % 2 == 0 ) && ( ix % 2 == 0 );
+				bool black = ( ix + iz ) % 2 == 0;
+				osg::DrawElementsUShort* primitives = black ? blackPrimitives.get() : whitePrimitives.get();
 				primitives->push_back( ix + ( iz + 1 )*numIndicesPerRow );
 				primitives->push_back( ix + iz * numIndicesPerRow );
 				primitives->push_back( ( ix + 1 ) + iz * numIndicesPerRow );

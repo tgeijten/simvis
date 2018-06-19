@@ -9,7 +9,7 @@ namespace vis
 	{
 	public:
 		plane() : group() {}
-		plane( float x_width, float z_width, const xo::path& image );
+		plane( const vec3f& width, const vec3f& height, const xo::path& image );
 		plane( int x_tiles, int z_tiles, float tile_size, color a, color b );
 	};
 }
