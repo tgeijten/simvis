@@ -13,11 +13,11 @@ namespace vis
 		int iw = testImage->s();
 		int ih = testImage->t();
 
-		osg::ref_ptr<osg::Texture2D> testTexture = new osg::Texture2D;
-		testTexture->setImage( testImage );
-		testTexture->setWrap( osg::Texture::WRAP_S, osg::Texture::REPEAT );
-		testTexture->setWrap( osg::Texture::WRAP_T, osg::Texture::REPEAT );
-		testTexture->setMaxAnisotropy( 8.0f );
+		osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
+		texture->setImage( testImage );
+		texture->setWrap( osg::Texture::WRAP_S, osg::Texture::REPEAT );
+		texture->setWrap( osg::Texture::WRAP_T, osg::Texture::REPEAT );
+		texture->setMaxAnisotropy( 8.0f );
 
 		osg::ref_ptr<osg::Geometry> geom = osg::createTexturedQuadGeometry(
 			make_osg( -0.5f * width + -0.5f * height ),
@@ -25,7 +25,8 @@ namespace vis
 			make_osg( height ),
 			0, 0, 0.5f * width.length(), 0.5f * height.length() );
 
-		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, testTexture.get() );
+		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, texture.get() );
+
 		geom->getOrCreateStateSet()->setMode( GL_DEPTH_TEST, osg::StateAttribute::ON );
 		geom->setCullingActive( true );
 
