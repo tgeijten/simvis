@@ -37,8 +37,9 @@ namespace vis
 
 		size_t size();
 
-		osg::Group& osg_group() { return *node_; }
 		virtual osg::Node* osg_node() override { return node_; }
+		osg::Group& osg_group() { return *node_; }
+		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast<osg::PositionAttitudeTransform&>( *node_ ); }
 
 		virtual void transform( const transformf& t ) override;
 		virtual void pos( const vec3f& p ) override;
@@ -46,6 +47,5 @@ namespace vis
 
 	protected:
 		osg::ref_ptr< osg::Group > node_;
-		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast< osg::PositionAttitudeTransform& >( *node_ ); }
 	};
 }
