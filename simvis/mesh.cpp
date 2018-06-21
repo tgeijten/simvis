@@ -19,7 +19,7 @@ namespace vis
 			file_node = read_vtp( filename );
 		else
 			file_node = osgDB::readNodeFile( filename.str() );
-		node->addChild( file_node );
+		node_->addChild( file_node );
 	}
 
 	mesh::mesh( const shape& s, const color& col, float detail ) :
@@ -53,7 +53,7 @@ namespace vis
 		sd->setColor( make_osg( col ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
-		node->addChild( g );
+		node_->addChild( g );
 	}
 
 	mesh::~mesh()
@@ -68,6 +68,6 @@ namespace vis
 
 	void mesh::set_color( const color& c )
 	{
-		dynamic_cast<osg::ShapeDrawable*>( node->getChild( 0 )->asGeode()->getDrawable( 0 ) )->setColor( make_osg( c ) );
+		dynamic_cast<osg::ShapeDrawable*>( node_->getChild( 0 )->asGeode()->getDrawable( 0 ) )->setColor( make_osg( c ) );
 	}
 }

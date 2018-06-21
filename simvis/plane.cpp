@@ -6,27 +6,25 @@
 
 namespace vis
 {
-	plane::plane( const vec3f& width, const vec3f& height, const xo::path& image )
+	plane::plane( const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep )
 	{
-		osg::ref_ptr<osg::Image> testImage = osgDB::readImageFile( image.str() );
-		xo_assert( testImage.valid() );
-		int iw = testImage->s();
-		int ih = testImage->t();
+		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.str() );
+		xo_assert( img.valid() );
 
 		osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
-		texture->setImage( testImage );
+		texture->setImage( img );
 		texture->setWrap( osg::Texture::WRAP_S, osg::Texture::REPEAT );
 		texture->setWrap( osg::Texture::WRAP_T, osg::Texture::REPEAT );
 		texture->setMaxAnisotropy( 8.0f );
 
 		osg::ref_ptr<osg::Geometry> geom = osg::createTexturedQuadGeometry(
-			make_osg( -0.5f * width + -0.5f * height ),
+			make_osg( -0.5f * width - 0.5f * height ),
 			make_osg( width ),
 			make_osg( height ),
-			0, 0, 0.5f * width.length(), 0.5f * height.length() );
+			0, 0,
+			wrep, hrep );
 
 		geom->getOrCreateStateSet()->setTextureAttributeAndModes( 0, texture.get() );
-
 		geom->getOrCreateStateSet()->setMode( GL_DEPTH_TEST, osg::StateAttribute::ON );
 		geom->setCullingActive( true );
 
@@ -43,7 +41,7 @@ namespace vis
 		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
 		geode->getOrCreateStateSet()->setAttribute( mat );
 
-		node->addChild( geode );
+		node_->addChild( geode );
 	}
 
 	plane::plane( int x_tiles, int z_tiles, float tile_size, color a, color b )
@@ -104,7 +102,6 @@ namespace vis
 		geode->getOrCreateStateSet()->setAttribute( mat );
 
 		set_shadow_mask( geode, true, false );
-
-		node->addChild( geode );
+		node_->addChild( geode );
 	}
 }

@@ -13,7 +13,7 @@ namespace vis
 		if ( use_shadows )
 		{
 			auto s_root = new osgShadow::ShadowedScene;
-			node = s_root;
+			node_ = s_root;
 
 			/// setup shadows
 			auto sm = new osgShadow::SoftShadowMap;
@@ -28,11 +28,11 @@ namespace vis
 		}
 		else
 		{
-			node = new osg::Group;
+			node_ = new osg::Group;
 		}
 
 		// enable lighting
-		node->getOrCreateStateSet()->setMode( GL_LIGHTING, osg::StateAttribute::ON );
+		node_->getOrCreateStateSet()->setMode( GL_LIGHTING, osg::StateAttribute::ON );
 
 		// set default lighting
 		osg::ref_ptr< osg::Material > mat = new osg::Material;
@@ -42,7 +42,7 @@ namespace vis
 		mat->setEmission( osg::Material::FRONT, osg::Vec4( 0, 0, 0, 1 ) );
 		mat->setShininess( osg::Material::FRONT, 25.0 );
 		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
-		node->getOrCreateStateSet()->setAttribute( mat );
+		node_->getOrCreateStateSet()->setAttribute( mat );
 	}
 
 	scene::~scene() {}

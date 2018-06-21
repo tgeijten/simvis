@@ -11,8 +11,8 @@ namespace vis
 	{
 	public:
 		group();
-		group( const group& other ) : node( other.node ) {}
-		group& operator=( const group& other ) { node = other.node; return *this; }
+		group( const group& other ) : node_( other.node_ ) {}
+		group& operator=( const group& other ) { node_ = other.node_; return *this; }
 		virtual ~group();
 
 		mesh add_mesh( const path& filename );
@@ -37,15 +37,15 @@ namespace vis
 
 		size_t size();
 
-		osg::Group& osg_group() { return *node; }
-		virtual osg::Node* osg_node() override { return node; }
+		osg::Group& osg_group() { return *node_; }
+		virtual osg::Node* osg_node() override { return node_; }
 
 		virtual void transform( const transformf& t ) override;
 		virtual void pos( const vec3f& p ) override;
 		virtual void ori( const quatf& q ) override;
 
 	protected:
-		osg::ref_ptr< osg::Group > node;
-		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast< osg::PositionAttitudeTransform& >( *node ); }
+		osg::ref_ptr< osg::Group > node_;
+		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast< osg::PositionAttitudeTransform& >( *node_ ); }
 	};
 }

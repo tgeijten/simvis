@@ -13,7 +13,7 @@ namespace vis
 
 	group::group()
 	{
-		node = new osg::PositionAttitudeTransform;
+		node_ = new osg::PositionAttitudeTransform;
 	}
 
 	group::~group()
@@ -93,47 +93,47 @@ namespace vis
 
 	void group::attach( object& o )
 	{
-		node->addChild( o.osg_node() );
+		node_->addChild( o.osg_node() );
 	}
 
 	void group::detach( object& o )
 	{
-		node->removeChild( o.osg_node() );
+		node_->removeChild( o.osg_node() );
 	}
 
 	void group::detach_all()
 	{
-		node->removeChildren( 0, node->getNumChildren() );
+		node_->removeChildren( 0, node_->getNumChildren() );
 	}
 
 	void group::release()
 	{
-		if ( node && node->referenceCount() == node->getNumParents() + 1 )
+		if ( node_ && node_->referenceCount() == node_->getNumParents() + 1 )
 		{
 			// this is the last ref, so remove from all parents
-			while ( node->getNumParents() > 0 )
-				node->getParent( 0 )->removeChild( node );
+			while ( node_->getNumParents() > 0 )
+				node_->getParent( 0 )->removeChild( node_ );
 		}
 	}
 
 	size_t group::size()
 	{
-		return node->getNumChildren();
+		return node_->getNumChildren();
 	}
 
 	void group::transform( const transformf& t )
 	{
-		static_cast< osg::PositionAttitudeTransform& >( *node ).setPosition( make_osg( t.p ) );
-		static_cast< osg::PositionAttitudeTransform& >( *node ).setAttitude( make_osg( t.q ) );
+		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setPosition( make_osg( t.p ) );
+		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setAttitude( make_osg( t.q ) );
 	}
 
 	void group::pos( const vec3f& p )
 	{
-		static_cast<osg::PositionAttitudeTransform&>( *node ).setPosition( make_osg( p ) );
+		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setPosition( make_osg( p ) );
 	}
 
 	void group::ori( const quatf& q )
 	{
-		static_cast<osg::PositionAttitudeTransform&>( *node ).setAttitude( make_osg( q ) );
+		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setAttitude( make_osg( q ) );
 	}
 }
