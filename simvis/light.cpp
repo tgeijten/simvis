@@ -19,6 +19,7 @@ namespace vis
 		light_source = new osg::LightSource;
 		light_source->setLight( l );
 		light_source->setLocalStateSetModes( osg::StateAttribute::ON );
+		light_source->setReferenceFrame( osg::LightSource::RELATIVE_RF );
 
 		s.osg_group().addChild( light_source );
 		s.osg_group().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
