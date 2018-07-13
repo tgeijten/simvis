@@ -22,12 +22,12 @@ namespace vis
 
 	inline color make_mix( const color& col1, const color& col2, double w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
 
-	inline color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br*(1-sat) ); }
-	inline color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*(1-sat) ); }
-	inline color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br*(1-sat) ); }
-	inline color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br, br ); }
-	inline color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*(1-sat), br*(1-sat), br ); }
-	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*(1-sat), br ); }
+	inline color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br*( 1 - sat ) ); }
+	inline color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*( 1 - sat ) ); }
+	inline color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br, br*( 1 - sat ) ); }
+	inline color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br, br ); }
+	inline color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br*( 1 - sat ), br ); }
+	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br ); }
 	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
 
 	SIMVIS_API color make_from_hsv( float H, float S, float V );
