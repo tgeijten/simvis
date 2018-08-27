@@ -11,7 +11,7 @@ namespace vis
 	using xo::shape;
 	using xo::shape_type;
 
-	mesh::mesh( const path& filename ) :
+	mesh::mesh( const xo::path& filename ) :
 	group()
 	{
 		osg::ref_ptr< osg::Node > file_node;

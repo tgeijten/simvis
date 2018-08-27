@@ -35,5 +35,5 @@ namespace vis
 	using xo::transformf;
 	using xo::degreef;
 	using xo::radianf;
-	using xo::path;
+	using xo::index_t;
 }

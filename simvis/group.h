@@ -15,7 +15,7 @@ namespace vis
 		group& operator=( const group& other ) { node_ = other.node_; return *this; }
 		virtual ~group();
 
-		mesh add_mesh( const path& filename );
+		mesh add_mesh( const xo::path& filename );
 		mesh add_sphere( float radius, color c, float detail = 0.5f );
 		mesh add_cube( vec3f dim, color c );
 		mesh add_cylinder( float radius, float height, color c, float detail = 0.5f );

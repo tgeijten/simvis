@@ -21,7 +21,7 @@ namespace vis
 		release();
 	}
 
-	mesh group::add_mesh( const path& filename )
+	mesh group::add_mesh( const xo::path& filename )
 	{
 		mesh m( filename );
 		attach( m );
