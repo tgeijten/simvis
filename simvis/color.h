@@ -1,7 +1,7 @@
 #pragma once
 
 #include "prerequisites.h"
-#include <cstdint>
+#include "xo/container/prop_node.h"
 
 namespace vis
 {
@@ -10,6 +10,7 @@ namespace vis
 		color() : r( 0.0f ), g( 0.0f ), b( 0.0f ), a( 1.0f ) {}
 		color( float pr, float pg, float pb, float pa = 1.0f ) : r( pr ), g( pg ), b( pb ), a( pb ) {}
 		color( double pr, double pg, double pb, double pa = 1.0 ) : r( float( pr ) ), g( float( pg ) ), b( float( pb ) ), a( float( pb ) ) {}
+		color( const xo::prop_node& pn );
 
 		float r, g, b, a;
 	};
@@ -32,8 +33,10 @@ namespace vis
 
 	SIMVIS_API color make_from_hsv( float H, float S, float V );
 	SIMVIS_API color make_unique_color( index_t i );
-	inline color make_from_hex( unsigned int x ) { return color( ( x >> 16 ) / 255.0f, ( ( x & 0xff00 ) >> 8 ) / 255.0f, ( x & 0xff ) / 255.0f ); }
+	color make_from_hex( unsigned int x );
 
 	inline std::ostream& operator<<( std::ostream& str, const vis::color c ) { return str << c.r << ' ' << c.g << ' ' << c.b << ' ' << c.a; }
 	inline std::istream& operator>>( std::istream& str, vis::color& c ) { return str >> c.r >> c.g >> c.b >> c.a; }
 }
+
+IS_PROP_NODE_CONSTRUCTABLE( vis::color );
