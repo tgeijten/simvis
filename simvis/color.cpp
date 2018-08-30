@@ -1,9 +1,10 @@
 #include "color.h"
 #include <array>
+#include "xo/system/log_sink.h"
 
 namespace vis
 {
-	vis::color make_from_hsv( float H, float S, float V )
+vis::color make_from_hsv( float H, float S, float V )
 	{
 		H = fmod( H, 360.0f ) / 60.0f;
 		float fract = H - floor( H );
@@ -27,19 +28,26 @@ namespace vis
 			return color( 0., 0., 0. );
 	}
 
-	SIMVIS_API color make_unique_color( index_t idx )
+	SIMVIS_API color make_unique_color( index_t idx, float brightness )
 	{
-		static std::array< float, 10 > standard_hue{ 0, 60, 120, 180, 240, 300, 30, 210, 270, 330 };
-		static std::array< float, 10 > standard_val{ 1, 0.75, 0.75, 0.75, 1, 1, 1, 0.75, 1, 1 };
+		static std::array< float, 12 > standard_hue{ 0, 120, 240, 45, 195, 310, 20, 75, 165, 215, 275, 330 };
 		float hue = standard_hue[ idx % standard_hue.size() ];
 		float sat = 1.0f / ( 1.0f + idx / standard_hue.size() );
-		float val = standard_val[ idx % standard_hue.size() ];
+		float pbr = perceived_brightness( make_from_hsv( hue, sat, 1.0f ) );
+		float val = xo::clamped( brightness / pbr, brightness, 1.0f );
+		//xo::log::debug( "color ", idx, ": perceived=", pbr, " value=", val );
 		return make_from_hsv( hue, sat, val );
 	}
 
 	vis::color make_from_hex( unsigned int x )
 	{
 		return color( ( x >> 16 ) / 255.0f, ( ( x & 0xff00 ) >> 8 ) / 255.0f, ( x & 0xff ) / 255.0f );
+	}
+
+	SIMVIS_API float perceived_brightness( const color& c )
+	{
+		// see http://alienryderflex.com/hsp.html
+		return sqrt( 0.299f * c.r * c.r + 0.587f * c.g * c.g + 0.114f * c.b * c.b );
 	}
 
 	color::color( const xo::prop_node& pn )

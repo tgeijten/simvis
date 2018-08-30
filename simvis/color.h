@@ -31,8 +31,10 @@ namespace vis
 	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br ); }
 	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
 
+	SIMVIS_API float perceived_brightness( const color& c );
+
 	SIMVIS_API color make_from_hsv( float H, float S, float V );
-	SIMVIS_API color make_unique_color( index_t i );
+	SIMVIS_API color make_unique_color( index_t i, float brightness = 0.6 );
 	color make_from_hex( unsigned int x );
 
 	inline std::ostream& operator<<( std::ostream& str, const vis::color c ) { return str << c.r << ' ' << c.g << ' ' << c.b << ' ' << c.a; }
