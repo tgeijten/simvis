@@ -4,6 +4,7 @@
 #include <osg/PositionAttitudeTransform>
 #include "xo/geometry/vec3_type.h"
 #include "xo/geometry/quat_type.h"
+#include "xo/filesystem/path.h"
 
 namespace vis
 {

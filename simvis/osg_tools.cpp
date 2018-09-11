@@ -12,6 +12,14 @@ using namespace xo;
 
 namespace vis
 {
+	/// convert space-delimited string to vector of elements
+	template< typename T > std::vector< T > str_to_vec( const string& s, size_t max_values, const char* delim = XO_WHITESPACE_CHARS ) {
+		char_stream str( s.c_str(), delim );
+		std::vector< T > vec; if ( max_values != no_index ) vec.reserve( max_values );
+		while ( str.good() && vec.size() < max_values ) { T elem; str >> elem; if ( !str.fail() ) vec.push_back( elem ); }
+		return vec;
+	}
+
 	SIMVIS_API osg::ref_ptr< osg::Geode > read_vtp( const path& filename )
 	{
 		prop_node root_pn = load_file( filename, "xml" );
