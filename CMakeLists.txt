@@ -41,6 +41,9 @@ source_group("simvis" FILES ${SOURCE_FILES})
 
 add_library(simvis SHARED ${SOURCE_FILES})
 
+set_property(TARGET simvis PROPERTY CXX_STANDARD 17)
+set_property(TARGET simvis PROPERTY CXX_STANDARD_REQUIRED ON)
+
 # XO
 # find_path(XO_INCLUDE_DIR NAMES "xo/system/platform.h" PATHS "${XO_DIR}")
 include_directories( ${XO_INCLUDE_DIR} )
