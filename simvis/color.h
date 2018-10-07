@@ -35,7 +35,7 @@ namespace vis
 
 	SIMVIS_API color make_from_hsv( float H, float S, float V );
 	SIMVIS_API color make_unique_color( index_t i, float brightness = 0.6 );
-	color make_from_hex( unsigned int x );
+	SIMVIS_API color make_from_hex( unsigned int x );
 
 	inline std::ostream& operator<<( std::ostream& str, const vis::color c ) { return str << c.r << ' ' << c.g << ' ' << c.b << ' ' << c.a; }
 	inline std::istream& operator>>( std::istream& str, vis::color& c ) { return str >> c.r >> c.g >> c.b >> c.a; }
