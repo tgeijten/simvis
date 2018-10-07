@@ -50,7 +50,7 @@ namespace vis
 		default: xo_error( "Cannot create mesh from " + s.name() );
 		}
 
-		sd->setColor( make_osg( col ) );
+		sd->setColor( to_osg( col ) );
 		auto g = new osg::Geode;
 		g->addDrawable( sd );
 		node_->addChild( g );
@@ -62,12 +62,12 @@ namespace vis
 
 	mesh& mesh::scale( const vec3f& s )
 	{
-		osg_trans_node().setScale( make_osg( s ) );
+		osg_trans_node().setScale( to_osg( s ) );
 		return *this;
 	}
 
 	void mesh::set_color( const color& c )
 	{
-		dynamic_cast<osg::ShapeDrawable*>( node_->getChild( 0 )->asGeode()->getDrawable( 0 ) )->setColor( make_osg( c ) );
+		dynamic_cast<osg::ShapeDrawable*>( node_->getChild( 0 )->asGeode()->getDrawable( 0 ) )->setColor( to_osg( c ) );
 	}
 }

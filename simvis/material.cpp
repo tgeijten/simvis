@@ -25,40 +25,40 @@ namespace vis
 
 	void material::set( color diffuse, color specular, float shininess, color ambient, color emissive )
 	{
-		mat->setDiffuse( osg::Material::FRONT_AND_BACK, make_osg( diffuse ) );
-		mat->setSpecular( osg::Material::FRONT_AND_BACK, make_osg( specular ) );
-		mat->setAmbient( osg::Material::FRONT_AND_BACK, make_osg( ambient ) );
-		mat->setEmission( osg::Material::FRONT_AND_BACK, make_osg( emissive ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) );
+		mat->setSpecular( osg::Material::FRONT_AND_BACK, to_osg( specular ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, to_osg( ambient ) );
+		mat->setEmission( osg::Material::FRONT_AND_BACK, to_osg( emissive ) );
 		mat->setShininess( osg::Material::FRONT_AND_BACK, shininess );
 	}
 
 	void material::set( color diffuse, float specular, float shininess, float ambient, float emissive )
 	{
-		mat->setDiffuse( osg::Material::FRONT_AND_BACK, make_osg( diffuse ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) );
 		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( specular, specular, specular, 1 ) );
-		mat->setAmbient( osg::Material::FRONT_AND_BACK, make_osg( diffuse ) * ambient );
-		mat->setEmission( osg::Material::FRONT_AND_BACK, make_osg( diffuse ) * emissive );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) * ambient );
+		mat->setEmission( osg::Material::FRONT_AND_BACK, to_osg( diffuse ) * emissive );
 		mat->setShininess( osg::Material::FRONT_AND_BACK, shininess );
 	}
 
 	void material::diffuse( color col )
 	{
-		mat->setDiffuse( osg::Material::FRONT_AND_BACK, make_osg( col ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, to_osg( col ) );
 	}
 
 	void material::specular( color col )
 	{
-		mat->setSpecular( osg::Material::FRONT_AND_BACK, make_osg( col ) );
+		mat->setSpecular( osg::Material::FRONT_AND_BACK, to_osg( col ) );
 	}
 
 	void material::ambient( color col )
 	{
-		mat->setAmbient( osg::Material::FRONT_AND_BACK, make_osg( col ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, to_osg( col ) );
 	}
 
 	void material::emissive( color col )
 	{
-		mat->setEmission( osg::Material::FRONT_AND_BACK, make_osg( col ) );
+		mat->setEmission( osg::Material::FRONT_AND_BACK, to_osg( col ) );
 	}
 
 	void material::shininess( float s )

@@ -6,7 +6,7 @@
 
 namespace vis
 {
-	using degree = xo::degree;
+	using degree = xo::degreef;
 
 	class SIMVIS_API osg_camera_man : public osgGA::OrbitManipulator
 	{
@@ -15,6 +15,8 @@ namespace vis
 		virtual ~osg_camera_man();
 
 		void setYawPitch( degree yaw, degree pitch ) { orbit_yaw = yaw; orbit_pitch = pitch; updateRotation(); }
+		degree getYaw() const { return orbit_yaw; }
+		degree getPitch() const { return orbit_pitch; }
 
 	protected:
 		virtual bool performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy );

@@ -123,17 +123,17 @@ namespace vis
 
 	void group::transform( const transformf& t )
 	{
-		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setPosition( make_osg( t.p ) );
-		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setAttitude( make_osg( t.q ) );
+		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setPosition( to_osg( t.p ) );
+		static_cast< osg::PositionAttitudeTransform& >( *node_ ).setAttitude( to_osg( t.q ) );
 	}
 
 	void group::pos( const vec3f& p )
 	{
-		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setPosition( make_osg( p ) );
+		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setPosition( to_osg( p ) );
 	}
 
 	void group::ori( const quatf& q )
 	{
-		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setAttitude( make_osg( q ) );
+		static_cast<osg::PositionAttitudeTransform&>( *node_ ).setAttitude( to_osg( q ) );
 	}
 }

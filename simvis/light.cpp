@@ -12,7 +12,7 @@ namespace vis
 		l->setLightNum( unique_light_number++ );
 
 		l->setPosition( osg::Vec4f( pos.x, pos.y, pos.z, 1 ) );
-		l->setDiffuse( make_osg( col ) );
+		l->setDiffuse( to_osg( col ) );
 		l->setSpecular( osg::Vec4( 1, 1, 1, 1 ) );
 		l->setAmbient( osg::Vec4( 1, 1, 1, 1 ) );
 
@@ -23,5 +23,17 @@ namespace vis
 
 		s.osg_group().addChild( light_source );
 		s.osg_group().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
+	}
+
+	void light::pos( const vec3f& pos )
+	{
+		light_source->getLight()->setPosition( osg::Vec4f( pos.x, pos.y, pos.z, 1 ) );
+	}
+
+	void light::attenuation( float c, float l, float q )
+	{
+		light_source->getLight()->setConstantAttenuation( c );
+		light_source->getLight()->setLinearAttenuation( l );
+		light_source->getLight()->setQuadraticAttenuation( q );
 	}
 }
