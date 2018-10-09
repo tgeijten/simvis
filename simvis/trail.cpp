@@ -20,7 +20,7 @@ namespace vis
 
 		// add points
 		while ( points.size() < num_points )
-			points.push_back( parent.add_sphere( radius * 1.05f, col, detail ) );
+			points.push_back( parent.add_sphere( radius * 1.02f, col, detail ) );
 		while ( cylinders.size() < num_cylinders )
 			cylinders.push_back( parent.add_cylinder( radius, 1.0f, col, detail ) );
 

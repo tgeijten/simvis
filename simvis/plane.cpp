@@ -39,7 +39,7 @@ namespace vis
 		mat->setColorMode( osg::Material::EMISSION );
 		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
 		mat->setDiffuse( osg::Material::FRONT_AND_BACK, osg::Vec4( 1.0, 1.0, 1.0, 1.0 ) );
-		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 1.0, 1.0, 1.0, 1.0 ) );
 		geode->getOrCreateStateSet()->setAttribute( mat );
 
 		node_->addChild( geode );
@@ -97,10 +97,11 @@ namespace vis
 		state->setMode( GL_CULL_FACE, osg::StateAttribute::ON );
 
 		osg::Material* mat = new osg::Material;
-		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
-		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
-		mat->setDiffuse( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
-		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 0 ) );
+		mat->setColorMode( osg::Material::EMISSION );
+		mat->setSpecular( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 1 ) );
+		mat->setDiffuse( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 1 ) );
+		mat->setAmbient( osg::Material::FRONT_AND_BACK, osg::Vec4( 0, 0, 0, 1 ) );
+		//mat->setEmission( osg::Material::FRONT_AND_BACK, osg::Vec4( 0.25, 0.25, 0.25, 1 ) );
 		geode->getOrCreateStateSet()->setAttribute( mat );
 
 		set_shadow_mask( geode, true, false );

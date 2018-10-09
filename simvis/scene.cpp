@@ -38,10 +38,10 @@ namespace vis
 		osg::ref_ptr< osg::Material > mat = new osg::Material;
 		mat->setDiffuse( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
 		mat->setSpecular( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
-		mat->setAmbient( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
+		mat->setAmbient( osg::Material::FRONT, osg::Vec4( 1, 0, 0, 1 ) );
 		mat->setEmission( osg::Material::FRONT, osg::Vec4( 0, 0, 0, 1 ) );
 		mat->setShininess( osg::Material::FRONT, 25.0 );
-		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
+		mat->setColorMode( osg::Material::DIFFUSE );
 		node_->getOrCreateStateSet()->setAttribute( mat );
 	}
 

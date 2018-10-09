@@ -15,14 +15,14 @@ namespace vis
 		virtual ~trail() {}
 
 		template< typename Iter >
-		void set_points( Iter b, Iter e )
+		void set_points( Iter b, Iter e, float relative_width = 1.0f )
 		{
 			if ( e - b != points.size() ) resize( e - b );
 			for ( size_t i = 0; i < points.size(); ++i ) points[ i ].pos( *( b + i ) );
 			for ( size_t i = 0; i < cylinders.size(); ++i ) {
 				auto delta = *( b + i + 1 ) - *( b + i );
 				cylinders[ i ].pos_ori( *( b + i ) + 0.5f * delta, quat_from_directions( vec3f::unit_z(), vec3f( normalized( delta ) ) ) );
-				cylinders[ i ].scale( vec3f( 1.0f, 1.0f, delta.length() ) );
+				cylinders[ i ].scale( vec3f( relative_width, relative_width, delta.length() ) );
 			}
 		}
 
