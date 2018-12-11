@@ -54,7 +54,7 @@ namespace vis
 			for ( size_t idx = 0; idx < ofs_vec.size(); ++idx )
 			{
 				auto end_ofs = ofs_vec[ idx ];
-				auto begin_ofs = idx == 0 ? unsigned short( 0 ) : ofs_vec[ idx - 1 ];
+				auto begin_ofs = idx == 0 ? (unsigned short)( 0 ) : ofs_vec[ idx - 1 ];
 				auto num_ver = end_ofs - begin_ofs;
 				if ( num_ver == 3 )
 				{
