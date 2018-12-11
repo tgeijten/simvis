@@ -19,9 +19,9 @@ namespace vis
 		degree getPitch() const { return orbit_pitch; }
 
 	protected:
-		virtual bool performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy );
-		virtual bool performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy );
-		virtual bool performMovementRightMouseButton( const double eventTimeDelta, const double dx, const double dy );
+		virtual bool performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy ) override;
+		virtual bool performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy ) override;
+		virtual bool performMovementRightMouseButton( const double eventTimeDelta, const double dx, const double dy ) override;
 		void updateRotation();
 		virtual bool handleKeyDown( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us ) override;
 
