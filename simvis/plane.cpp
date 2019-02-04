@@ -9,7 +9,7 @@ namespace vis
 {
 	plane::plane( const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep )
 	{
-		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.str() );
+		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.string() );
 		xo_assert( img.valid() );
 
 		osg::ref_ptr<osg::Texture2D> texture = new osg::Texture2D;
