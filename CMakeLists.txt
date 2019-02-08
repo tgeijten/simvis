@@ -1,5 +1,3 @@
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 find_path( SIMVIS_INCLUDE_DIR NAMES "simvis/prerequisites.h" PATHS ${CMAKE_CURRENT_SOURCE_DIR} )
 
 set(SOURCE_FILES
@@ -41,12 +39,9 @@ source_group("simvis" FILES ${SOURCE_FILES})
 
 add_library(simvis SHARED ${SOURCE_FILES})
 
-set_property(TARGET simvis PROPERTY CXX_STANDARD 17)
-set_property(TARGET simvis PROPERTY CXX_STANDARD_REQUIRED ON)
+set_target_properties(simvis PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
-# XO
-# find_path(XO_INCLUDE_DIR NAMES "xo/system/platform.h" PATHS "${XO_DIR}")
-include_directories( ${XO_INCLUDE_DIR} )
+target_include_directories(simvis PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # OpenSceneGraph
 set(OSG_DIR "" CACHE PATH "Installation directory of OpenSceneGraph")
@@ -59,7 +54,8 @@ FIND_PACKAGE( osgutil )
 FIND_PACKAGE( osgdb )
 FIND_PACKAGE( osgshadow )
 FIND_PACKAGE( OpenThreads )
-INCLUDE_DIRECTORIES(${OSG_INCLUDE_DIR})
+
+target_include_directories(simvis PRIVATE ${OSG_INCLUDE_DIR})
 
 target_link_libraries(simvis
 	xo
