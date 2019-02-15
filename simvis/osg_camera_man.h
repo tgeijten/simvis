@@ -8,6 +8,8 @@ namespace vis
 {
 	using degree = xo::degreef;
 
+	using camera_state = std::tuple< degree, degree, double, double >;
+
 	class SIMVIS_API osg_camera_man : public osgGA::OrbitManipulator
 	{
 	public:
@@ -17,6 +19,7 @@ namespace vis
 		void setYawPitch( degree yaw, degree pitch ) { orbit_yaw = yaw; orbit_pitch = pitch; updateRotation(); }
 		degree getYaw() const { return orbit_yaw; }
 		degree getPitch() const { return orbit_pitch; }
+		void setCameraState( const camera_state& s );
 
 	protected:
 		virtual bool performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy ) override;
@@ -26,8 +29,8 @@ namespace vis
 		virtual bool handleKeyDown( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us ) override;
 
 	private:
-		degree orbit_yaw;
 		degree orbit_pitch;
+		degree orbit_yaw;
 
 		double pitch_scale = 100;
 		double yaw_scale = 100;

@@ -1,21 +1,24 @@
 #include "osg_camera_man.h"
 #include "xo/system/log_sink.h"
+#include <functional>
 
 using namespace osg;
+using namespace xo::literals;
 
 namespace vis
 {
+	camera_state default_cam_pos{ -5.0_degf, 0_degf, 1.0, 4.5 };
+	camera_state yz_cam_pos{ 0_degf, 0_degf, 1.0, 4.5 };
+	camera_state xy_cam_pos{ 0_degf, 90_degf, 1.0, 4.5 };
+	camera_state xz_cam_pos{ -90_degf, 90_degf, 1.0, 4.5 };
+
 	osg_camera_man::osg_camera_man() :
-	osgGA::OrbitManipulator(),
-	orbit_yaw( 0 ),
-	orbit_pitch( -5 )
+	osgGA::OrbitManipulator()
 	{
 		setAllowThrow( false );
-		_distance = 4.5;
 		_minimumDistance = 0.001;
-		_center = Vec3d( 0, 1.0, 0 );
 
-		updateRotation();
+		setCameraState( default_cam_pos );
 
 		osg::Vec3d eye, center, up;
 		getTransformation( eye, center, up );
@@ -23,6 +26,12 @@ namespace vis
 	}
 
 	osg_camera_man::~osg_camera_man() {}
+
+	void osg_camera_man::setCameraState( const camera_state& s )
+	{
+		std::tie( orbit_pitch, orbit_yaw, _center.y(), _distance ) = s;
+		updateRotation();
+	}
 
 	bool osg_camera_man::performMovementLeftMouseButton( const double eventTimeDelta, const double dx, const double dy )
 	{
@@ -43,10 +52,18 @@ namespace vis
 
 	bool osg_camera_man::handleKeyDown( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& us )
 	{
-		// filter out space key because we don't want it to reset the camera
-		if ( ea.getKey() != osgGA::GUIEventAdapter::KEY_Space )
-			return osgGA::OrbitManipulator::handleKeyDown( ea, us );
-		else return false;
+		switch ( ea.getKey() )
+		{
+		case 'r': setCameraState( default_cam_pos ); return true;
+		case 'x': setCameraState( yz_cam_pos ); return true;
+		case 'y': setCameraState( xz_cam_pos ); return true;
+		case 'z': setCameraState( xy_cam_pos ); return true;
+		default:
+			// filter out space key because we don't want it to reset the camera
+			if ( ea.getKey() != osgGA::GUIEventAdapter::KEY_Space )
+				return osgGA::OrbitManipulator::handleKeyDown( ea, us );
+			else return false;
+		}
 	}
 
 	bool osg_camera_man::performMovementMiddleMouseButton( const double eventTimeDelta, const double dx, const double dy )
