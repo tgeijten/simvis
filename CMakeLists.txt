@@ -39,6 +39,7 @@ source_group("simvis" FILES ${SOURCE_FILES})
 
 add_library(simvis SHARED ${SOURCE_FILES})
 
+# Require C++17 standard
 set_target_properties(simvis PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
 target_include_directories(simvis PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
