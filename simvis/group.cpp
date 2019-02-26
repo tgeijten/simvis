@@ -28,37 +28,9 @@ namespace vis
 		return m;
 	}
 
-	mesh group::add_sphere( float radius, color c, float detail )
+	vis::mesh group::add_shape( const xo::shape& s, color c, float detail )
 	{
-		mesh m( xo::sphere{ radius }, c, detail );
-		attach( m );
-		return m;
-	}
-
-	mesh group::add_cube( vec3f dim, color c )
-	{
-		mesh m( xo::box{ dim }, c );
-		attach( m );
-		return m;
-	}
-
-	mesh group::add_cylinder( float radius, float height, color c, float detail )
-	{
-		mesh m( xo::cylinder{ radius, height }, c, detail );
-		attach( m );
-		return m;
-	}
-
-	vis::mesh group::add_capsule( float radius, float height, color c, float detail )
-	{
-		mesh m( xo::capsule{ radius, height }, c, detail );
-		attach( m );
-		return m;
-	}
-
-	vis::mesh group::add_cone( float radius, float height, color c, float detail )
-	{
-		mesh m( xo::cone{ radius, height }, c, detail );
+		mesh m( s, c, detail );
 		attach( m );
 		return m;
 	}

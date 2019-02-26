@@ -5,6 +5,7 @@
 #include "xo/geometry/vec3_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/filesystem/path.h"
+#include "xo/shape/shape.h"
 
 namespace vis
 {
@@ -17,11 +18,7 @@ namespace vis
 		virtual ~group();
 
 		mesh add_mesh( const xo::path& filename );
-		mesh add_sphere( float radius, color c, float detail = 0.5f );
-		mesh add_cube( vec3f dim, color c );
-		mesh add_cylinder( float radius, float height, color c, float detail = 0.5f );
-		mesh add_capsule( float radius, float height, color c, float detail = 0.5f );
-		mesh add_cone( float radius, float height, color c, float detail = 0.5f );
+		mesh add_shape( const xo::shape& s, color c, float detail = 0.05f );
 		arrow add_arrow( float radius, float head_radius, color c, float detail = 0.5f );
 		axes add_axes( vec3f length, float detail = 0.5f );
 		trail add_trail( size_t num_points, float radius, color c, float detail = 0.5f );
@@ -30,8 +27,6 @@ namespace vis
 		template< typename T, typename... Args > T add( Args&&... a ) { T o( std::forward< Args >( a )... ); attach( o ); return o; }
 
 		void attach( object& o );
-		template< typename... Args > void attach( object& o, Args&... args ) { attach( o ); attach( args... ); }
-
 		void detach( object& o );
 		void detach_all();
 		void release();

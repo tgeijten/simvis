@@ -13,7 +13,7 @@ namespace vis
 		mesh() : group() {}
 		mesh( const mesh& other ) : group( other ) {}
 		mesh( const xo::path& filename );
-		mesh( const xo::shape& shape, const color& col, float detail = 1.0f );
+		mesh( const xo::shape& shape, const color& col, float detail );
 		virtual ~mesh();
 
 		mesh& scale( const vec3f& s );

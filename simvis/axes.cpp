@@ -7,9 +7,9 @@ namespace vis
 {
 	axes::axes( vec3f length, float radius, float detail )
 	{
-		x_arrow = add_capsule( radius, length.x, make_red(), detail );
-		y_arrow = add_capsule( radius, length.y, make_green(), detail );
-		z_arrow = add_capsule( radius, length.z, make_blue(), detail );
+		x_arrow = add_shape( xo::capsule{ radius, length.x }, make_red(), detail );
+		y_arrow = add_shape( xo::capsule{ radius, length.y }, make_green(), detail );
+		z_arrow = add_shape( xo::capsule{ radius, length.z }, make_blue(), detail );
 
 		x_arrow.pos_ori( vec3f( 0.5f * length.x, 0, 0 ), xo::quat_from_euler( degreef( 0 ), degreef( 90 ), degreef( 0 ) ) );
 		y_arrow.pos_ori( vec3f( 0, 0.5f * length.y, 0 ), xo::quat_from_euler( degreef( 90 ), degreef( 0 ), degreef( 0 ) ) );
@@ -17,8 +17,7 @@ namespace vis
 	}
 
 	axes::~axes()
-	{
-	}
+	{}
 
 	void axes::show( bool s )
 	{
