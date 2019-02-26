@@ -4,7 +4,7 @@
 #include "trail.h"
 #include "osg_tools.h"
 #include "axes.h"
-#include "xo/geometry/shape.h"
+#include "xo/shape/shape.h"
 
 namespace vis
 {
@@ -30,35 +30,35 @@ namespace vis
 
 	mesh group::add_sphere( float radius, color c, float detail )
 	{
-		mesh m( shape( shape_type::sphere, radius ), c, detail );
+		mesh m( xo::sphere{ radius }, c, detail );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cube( vec3f dim, color c )
 	{
-		mesh m( shape( shape_type::box, dim.x, dim.y, dim.z ), c );
+		mesh m( xo::box{ dim }, c );
 		attach( m );
 		return m;
 	}
 
 	mesh group::add_cylinder( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape_type::cylinder, radius, height ), c, detail );
+		mesh m( xo::cylinder{ radius, height }, c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_capsule( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape_type::capsule, radius, height ), c, detail );
+		mesh m( xo::capsule{ radius, height }, c, detail );
 		attach( m );
 		return m;
 	}
 
 	vis::mesh group::add_cone( float radius, float height, color c, float detail )
 	{
-		mesh m( shape( shape_type::cone, radius, height ), c, detail );
+		mesh m( xo::cone{ radius, height }, c, detail );
 		attach( m );
 		return m;
 	}

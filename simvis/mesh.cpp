@@ -30,24 +30,27 @@ namespace vis
 
 		osg::ref_ptr< osg::ShapeDrawable > sd;
 
-		switch ( s.type() )
+		switch ( s.index() )
 		{
 		case shape_type::sphere:
-			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius() ), hints );
+			sd = new osg::ShapeDrawable( new osg::Sphere( osg::Vec3( 0.0f, 0.0f, 0.0f ), std::get<xo::sphere>(s).radius_ ), hints );
 			break;
 		case shape_type::box:
-			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.x(), s.y(), s.z() ), hints );
+		{
+			auto d = dim( s );
+			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), d.x, d.y, d.z ), hints );
 			break;
+		}
 		case shape_type::cylinder:
-			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
+			sd = new osg::ShapeDrawable( new osg::Cylinder( osg::Vec3( 0.0f, 0.0f, 0.0f ), std::get<xo::cylinder>( s ).radius_, std::get<xo::cylinder>( s ).height_ ), hints );
 			break;
 		case shape_type::capsule:
-			sd = new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
+			sd = new osg::ShapeDrawable( new osg::Capsule( osg::Vec3( 0.0f, 0.0f, 0.0f ), std::get<xo::capsule>( s ).radius_, std::get<xo::capsule>( s ).height_ ), hints );
 			break;
 		case shape_type::cone:
-			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), s.radius(), s.height() ), hints );
+			sd = new osg::ShapeDrawable( new osg::Cone( osg::Vec3( 0.0f, 0.0f, 0.0f ), std::get<xo::cone>( s ).radius_, std::get<xo::cone>( s ).height_ ), hints );
 			break;
-		default: xo_error( "Cannot create mesh from " + s.name() );
+		default: xo_error( "Cannot create mesh from shape" );
 		}
 
 		sd->setColor( to_osg( col ) );

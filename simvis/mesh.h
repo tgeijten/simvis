@@ -3,7 +3,7 @@
 #include "object.h"
 #include "group.h"
 #include "xo/filesystem/path.h"
-#include "xo/geometry/shape.h"
+#include "xo/shape/shape.h"
 
 namespace vis
 {

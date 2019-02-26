@@ -1,7 +1,6 @@
 #pragma once
 
 #include "group.h"
-#include "xo/geometry/shape.h"
 
 namespace vis
 {
