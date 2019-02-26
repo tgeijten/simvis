@@ -9,15 +9,14 @@ namespace vis
 	class SIMVIS_API light : public node
 	{
 	public:
-		light() : light_source( nullptr ) {}
-		light( const light& other ) : light_source( other.light_source ) {}
-		explicit light( scene& s, const vec3f& pos, const color& col );
+		light() : node( nullptr ), light_source( nullptr ) {}
+		light( const light& other ) : node( other ), light_source( other.light_source ) {}
+		explicit light( node& parent, const vec3f& pos, const color& col );
 		virtual ~light() {}
 
 		int get_number() { return light_source->getLight()->getLightNum(); }
 
-		virtual osg::Node* osg_node() override { return light_source; }
-		virtual void pos( const vec3f& p ) override;
+		void pos( const vec3f& p );
 		void attenuation( float c, float l, float q );
 
 	private:

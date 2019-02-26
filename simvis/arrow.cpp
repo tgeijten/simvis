@@ -6,12 +6,13 @@
 
 namespace vis
 {
-	arrow::arrow( float radius, float head_radius, const color& c, float detail )
+	arrow::arrow( node& parent, float radius, float head_radius, const color& c, float detail ) :
+	node( &parent )
 	{
-		cylinder = add_shape( xo::cylinder{ radius, 1 }, c, detail );
+		cylinder = mesh( *this, xo::cylinder{ radius, 1 }, c, detail );
 
 		if ( head_radius > 0.0f )
-			end_cone = add_shape( xo::cone{ head_radius, head_radius * 2 }, c, detail );
+			end_cone = mesh( *this, xo::cone{ head_radius, head_radius * 2 }, c, detail );
 	}
 
 	arrow::~arrow()

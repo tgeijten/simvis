@@ -7,7 +7,8 @@
 
 namespace vis
 {
-	plane::plane( const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep )
+	plane::plane( node& parent, const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep ) :
+	node( &parent )
 	{
 		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.string() );
 		xo_assert( img.valid() );
@@ -45,7 +46,8 @@ namespace vis
 		node_->addChild( geode );
 	}
 
-	plane::plane( int x_tiles, int z_tiles, float tile_size, color a, color b )
+	plane::plane( node& parent, int x_tiles, int z_tiles, float tile_size, color a, color b ) :
+	node( &parent )
 	{
 		// fill in vertices for grid, note numTilesX+1 * numTilesY+1...
 		osg::Vec3Array* coords = new osg::Vec3Array;

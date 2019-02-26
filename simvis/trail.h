@@ -9,8 +9,8 @@ namespace vis
 	class SIMVIS_API trail : public node
 	{
 	public:
-		trail() {}
-		trail( size_t num_points, float radius, color c, float detail = 0.5f );
+		trail() : node( nullptr ) {}
+		trail( node& parent, size_t num_points, float radius, color c, float detail = 0.5f );
 		virtual ~trail() {}
 
 		template< typename Iter >

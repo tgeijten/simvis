@@ -13,63 +13,19 @@ namespace vis
 	using xo::shape;
 	using xo::shape_type;
 
-	node::node()
+	node::node( node* parent ) :
+	node_( nullptr )
 	{
-		node_ = new osg::PositionAttitudeTransform;
+		if ( parent )
+		{
+			node_ = new osg::PositionAttitudeTransform;
+			parent->attach( *this );
+		}
 	}
 
 	node::~node()
 	{
 		release();
-	}
-
-	mesh node::add_mesh( const xo::path& filename )
-	{
-		mesh m( filename );
-		attach( m );
-		return m;
-	}
-
-	vis::mesh node::add_shape( const xo::shape& s, color c, float detail )
-	{
-		mesh m( s, c, detail );
-		attach( m );
-		return m;
-	}
-
-	arrow node::add_arrow( float radius, float head_radius, color c, float detail )
-	{
-		arrow m( radius, head_radius, c, detail );
-		attach( m );
-		return m;
-	}
-
-	axes node::add_axes( vec3f length, float detail )
-	{
-		axes a( length, detail );
-		attach( a );
-		return a;
-	}
-
-	trail node::add_trail( size_t num_points, float radius, color c, float detail )
-	{
-		trail t( num_points, radius, c, detail );
-		attach( t );
-		return t;
-	}
-
-	//light node::add_light( const vec3f& pos, const color& c )
-	//{
-	//	auto l = light( pos, c );
-	//	attach( l );
-	//	return l;
-	//}
-
-	node node::add_group()
-	{
-		node g;
-		attach( g );
-		return g;
 	}
 
 	void node::attach( node& o )
@@ -97,7 +53,7 @@ namespace vis
 		}
 	}
 
-	size_t node::size()
+	size_t node::size() const
 	{
 		return node_->getNumChildren();
 	}
@@ -114,16 +70,9 @@ namespace vis
 		osg_node()->getOrCreateStateSet()->setAttribute( m.osg_mat() );
 	}
 
-	vis::material node::get_material()
+	bool node::has_parent() const
 	{
-		// WARNING: untested
-		auto* m = osg_node()->getOrCreateStateSet()->getAttribute( osg::StateAttribute::Type::MATERIAL );
-		return material( dynamic_cast<osg::Material*>( m ) );
-	}
-
-	bool node::has_parent()
-	{
-		return osg_node()->getNumParents() > 0;
+		return node_ && node_->getNumParents() > 0;
 	}
 
 	void node::transform( const transformf& t )

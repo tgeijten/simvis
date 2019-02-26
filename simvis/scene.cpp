@@ -8,7 +8,8 @@
 
 namespace vis
 {
-	scene::scene( bool use_shadows )
+	scene::scene( bool use_shadows ) :
+	node( nullptr )
 	{
 		if ( use_shadows )
 		{

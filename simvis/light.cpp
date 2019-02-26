@@ -6,7 +6,8 @@ namespace vis
 {
 	int light::unique_light_number = 0;
 
-	light::light( scene& s, const vec3f& pos, const color& col )
+	light::light( node& parent, const vec3f& pos, const color& col ) :
+	node( &parent )
 	{
 		auto l = new osg::Light;
 		l->setLightNum( unique_light_number++ );
@@ -21,8 +22,8 @@ namespace vis
 		light_source->setLocalStateSetModes( osg::StateAttribute::ON );
 		light_source->setReferenceFrame( osg::LightSource::RELATIVE_RF );
 
-		s.osg_group().addChild( light_source );
-		s.osg_group().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
+		osg_group().addChild( light_source );
+		parent.osg_group().getOrCreateStateSet()->setMode( GL_LIGHT0 + get_number(), osg::StateAttribute::ON );
 	}
 
 	void light::pos( const vec3f& pos )

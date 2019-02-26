@@ -9,9 +9,8 @@ namespace vis
 	class SIMVIS_API axes : public node
 	{
 	public:
-		axes() : node() {}
-		axes( vec3f length, float detail ) : axes( length, 0.005f, detail ) {}
-		axes( vec3f length, float radius, float detail );
+		axes( node& parent, vec3f length, float detail ) : axes( parent, length, 0.005f, detail ) {}
+		axes( node& parent, vec3f length, float radius, float detail );
 		virtual ~axes();
 
 		void show( bool s );
@@ -22,3 +21,4 @@ namespace vis
 		mesh z_arrow;
 	};
 }
+ 

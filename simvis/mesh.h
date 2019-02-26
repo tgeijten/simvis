@@ -9,10 +9,10 @@ namespace vis
 	class SIMVIS_API mesh : public node
 	{
 	public:
-		mesh() : node() {}
+		mesh() : node( nullptr ) {}
 		mesh( const mesh& other ) : node( other ) {}
-		mesh( const xo::path& filename );
-		mesh( const xo::shape& shape, const color& col, float detail = default_detail );
+		mesh( node& parent, const xo::path& filename );
+		mesh( node& parent, const xo::shape& shape, const color& col, float detail );
 		virtual ~mesh();
 
 		mesh& scale( const vec3f& s );

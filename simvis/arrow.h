@@ -9,9 +9,9 @@ namespace vis
 	class SIMVIS_API arrow : public node
 	{
 	public:
-		arrow() {}
-		arrow( const arrow& other ) : cylinder( other.cylinder ), end_cone( other.end_cone ) {}
-		arrow( float radius, float head_radius, const color& c, float detail = 0.5f );
+		arrow() : node( nullptr ) {}
+		arrow( const arrow& other ) : node( other ), cylinder( other.cylinder ), end_cone( other.end_cone ) {}
+		arrow( node& parent, float radius, float head_radius, const color& c, float detail = 0.5f );
 		virtual ~arrow();
 
 		void pos( const vec3f& begin_pos, const vec3f& end_pos );
