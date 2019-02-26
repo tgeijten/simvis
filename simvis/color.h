@@ -1,6 +1,7 @@
 #pragma once
 
-#include "prerequisites.h"
+#include "simvis_api.h"
+#include "types.h"
 #include "xo/container/prop_node.h"
 
 namespace vis

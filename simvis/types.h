@@ -1,33 +1,21 @@
 #pragma once
 
-#if defined(_MSC_VER)
-#	ifdef SIMVIS_EXPORTS
-#		define SIMVIS_API __declspec(dllexport)
-#	else
-#		define SIMVIS_API __declspec(dllimport)
-#	endif
-#else
-#	define SIMVIS_API
-#endif
-
 #include "xo/geometry/vec3_type.h"
 #include "xo/geometry/vec4_type.h"
 #include "xo/geometry/quat_type.h"
 #include "xo/geometry/transform.h"
-#include <string>
 
 namespace vis
 {
 	class axes;
-	class group;
+	class node;
 	class scene;
 	class mesh;
 	class arrow;
 	class trail;
 	class arrow;
 	class light;
-
-	using std::string;
+	class material;
 
 	using xo::vec3f;
 	using xo::vec4f;

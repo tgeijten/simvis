@@ -1,17 +1,16 @@
 #pragma once
 
-#include "object.h"
-#include "group.h"
+#include "node.h"
 #include "xo/filesystem/path.h"
 #include "xo/shape/shape.h"
 
 namespace vis
 {
-	class SIMVIS_API mesh : public group
+	class SIMVIS_API mesh : public node
 	{
 	public:
-		mesh() : group() {}
-		mesh( const mesh& other ) : group( other ) {}
+		mesh() : node() {}
+		mesh( const mesh& other ) : node( other ) {}
 		mesh( const xo::path& filename );
 		mesh( const xo::shape& shape, const color& col, float detail );
 		virtual ~mesh();

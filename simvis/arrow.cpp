@@ -8,10 +8,10 @@ namespace vis
 {
 	arrow::arrow( float radius, float head_radius, const color& c, float detail )
 	{
-		cylinder = root.add_shape( xo::cylinder{ radius, 1 }, c, detail );
+		cylinder = add_shape( xo::cylinder{ radius, 1 }, c, detail );
 
 		if ( head_radius > 0.0f )
-			end_cone = root.add_shape( xo::cone{ head_radius, head_radius * 2 }, c, detail );
+			end_cone = add_shape( xo::cone{ head_radius, head_radius * 2 }, c, detail );
 	}
 
 	arrow::~arrow()

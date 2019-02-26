@@ -13,7 +13,7 @@ namespace vis
 	using xo::shape_type;
 
 	mesh::mesh( const xo::path& filename ) :
-	group()
+	node()
 	{
 		osg::ref_ptr< osg::Node > file_node;
 		if ( filename.extension() == "vtp" )
@@ -55,7 +55,7 @@ namespace vis
 	};
 
 	mesh::mesh( const shape& s, const color& col, float detail ) :
-	group()
+	node()
 	{
 		auto hints = new osg::TessellationHints;
 		hints->setDetailRatio( detail );

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "prerequisites.h"
-#include "object.h"
+#include "simvis_api.h"
 #include <osg/LightSource>
+#include "node.h"
 
 namespace vis
 {
-	class SIMVIS_API light : public object
+	class SIMVIS_API light : public node
 	{
 	public:
 		light() : light_source( nullptr ) {}

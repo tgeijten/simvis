@@ -1,6 +1,6 @@
 #pragma once
 
-#include "prerequisites.h"
+#include "simvis_api.h"
 #include <osgGA/OrbitManipulator>
 #include "xo/geometry/angle.h"
 

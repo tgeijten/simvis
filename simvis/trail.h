@@ -1,13 +1,12 @@
 #pragma once
 
-#include "object.h"
 #include "osg/Group"
 #include "mesh.h"
-#include "group.h"
+#include "node.h"
 
 namespace vis
 {
-	class SIMVIS_API trail : public object
+	class SIMVIS_API trail : public node
 	{
 	public:
 		trail() {}
@@ -17,15 +16,12 @@ namespace vis
 		template< typename Iter >
 		void set_points( Iter b, Iter e, float relative_width = 1.0f );
 
-		virtual osg::Node* osg_node() override { return parent.osg_node(); }
-
 	private:
 		void resize( size_t num_points );
 
 		color col;
 		float detail;
 		float radius;
-		group parent;
 		std::vector< mesh > points;
 		std::vector< mesh > cylinders;
 	};

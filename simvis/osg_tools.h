@@ -1,6 +1,7 @@
 #pragma once
 
-#include "prerequisites.h"
+#include "simvis_api.h"
+#include "types.h"
 #include "color.h"
 #include "xo/filesystem/path.h"
 

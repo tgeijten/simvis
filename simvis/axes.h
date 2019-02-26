@@ -1,16 +1,15 @@
 #pragma once
 
-#include "object.h"
 #include "mesh.h"
-#include "group.h"
+#include "node.h"
 #include "arrow.h"
 
 namespace vis
 {
-	class SIMVIS_API axes : public group
+	class SIMVIS_API axes : public node
 	{
 	public:
-		axes() : group() {}
+		axes() : node() {}
 		axes( vec3f length, float detail ) : axes( length, 0.005f, detail ) {}
 		axes( vec3f length, float radius, float detail );
 		virtual ~axes();
