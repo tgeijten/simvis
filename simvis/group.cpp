@@ -4,7 +4,7 @@
 #include "trail.h"
 #include "osg_tools.h"
 #include "axes.h"
-#include "xo/geometry/shape.h"
+#include "xo/shape/shape.h"
 
 namespace vis
 {

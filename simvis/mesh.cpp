@@ -37,7 +37,7 @@ namespace vis
 			break;
 		case shape_type::box:
 		{
-			auto d = std::get<xo::box>( s ).dim();
+			auto d = dim( s );
 			sd = new osg::ShapeDrawable( new osg::Box( osg::Vec3( 0.0f, 0.0f, 0.0f ), d.x, d.y, d.z ), hints );
 			break;
 		}
