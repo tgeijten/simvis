@@ -9,3 +9,8 @@
 #else
 #	define SIMVIS_API
 #endif
+
+namespace vis
+{
+	constexpr double default_detail = 0.8;
+}
