@@ -32,8 +32,9 @@ namespace vis
 		void transform( const transformf& t );
 		void pos( const vec3f& p );
 		void ori( const quatf& q );
-		virtual void pos_ori( const vec3f& p, const quatf& q ) { pos( p ); ori( q ); }
+		void pos_ori( const vec3f& p, const quatf& q ) { pos( p ); ori( q ); }
 
+		explicit operator bool() const { return node_ != nullptr; }
 		osg::Node* osg_node() { return node_; }
 		osg::Group& osg_group() { return *node_; }
 		osg::PositionAttitudeTransform& osg_trans_node() { return static_cast<osg::PositionAttitudeTransform&>( *node_ ); }
