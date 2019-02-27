@@ -5,6 +5,7 @@
 #include "osg_tools.h"
 #include "osgDB/ObjectCache"
 #include "osgDB/ReadFile"
+#include "osg/LightModel"
 
 namespace vis
 {
@@ -37,13 +38,16 @@ namespace vis
 
 		// set default lighting
 		osg::ref_ptr< osg::Material > mat = new osg::Material;
-		mat->setDiffuse( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
 		mat->setSpecular( osg::Material::FRONT, osg::Vec4( 1, 1, 1, 1 ) );
-		mat->setAmbient( osg::Material::FRONT, osg::Vec4( 0, 0, 0, 1 ) );
 		mat->setEmission( osg::Material::FRONT, osg::Vec4( 0, 0, 0, 1 ) );
 		mat->setShininess( osg::Material::FRONT, 25.0 );
-		mat->setColorMode( osg::Material::DIFFUSE );
+		mat->setColorMode( osg::Material::AMBIENT_AND_DIFFUSE );
 		node_->getOrCreateStateSet()->setAttribute( mat );
+
+		// set ambient intensity (for some reason, this requires yet another light class)
+		osg::ref_ptr< osg::LightModel > lm = new osg::LightModel;
+		lm->setAmbientIntensity( osg::Vec4( 0.333, 0.333, 0.333, 1 ) );
+		node_->getOrCreateStateSet()->setAttribute( lm );
 	}
 
 	scene::~scene() {}

@@ -7,7 +7,7 @@ namespace vis
 	int light::unique_light_number = 0;
 
 	light::light( scene& parent, const vec3f& pos, const color& col ) :
-	node( &parent )
+	node( nullptr )
 	{
 		auto l = new osg::Light;
 		l->setLightNum( unique_light_number++ );
