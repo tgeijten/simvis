@@ -11,7 +11,7 @@ namespace vis
 	public:
 		light() : node( nullptr ), light_source( nullptr ) {}
 		light( const light& other ) : node( other ), light_source( other.light_source ) {}
-		explicit light( node& parent, const vec3f& pos, const color& col );
+		explicit light( scene& parent, const vec3f& pos, const color& col );
 		virtual ~light() {}
 
 		int get_number() { return light_source->getLight()->getLightNum(); }
