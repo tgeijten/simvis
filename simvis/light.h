@@ -10,11 +10,12 @@ namespace vis
 	{
 	public:
 		light() : node( nullptr ), light_source( nullptr ) {}
-		light( light&& other ) : node( std::move( other ) ), light_source( other.light_source ) { other.light_source = nullptr; }
-		light& operator=( light&& other ) { node::operator=( std::move( other ) ); light_source = other.light_source; other.light_source = nullptr; return *this; }
-		light( const light& other ) = delete;
 		explicit light( scene& parent, const vec3f& pos, const color& col );
-		virtual ~light() {}
+
+		light( const light& ) = delete;
+		light& operator=( const light& ) = delete;
+		light( light&& ) = default;
+		light& operator=( light&& ) = default;
 
 		int get_number() { return light_source->getLight()->getLightNum(); }
 

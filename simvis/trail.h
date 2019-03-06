@@ -41,5 +41,4 @@ namespace vis
 			cylinders[ i ].scale( vec3f( relative_width, relative_width, delta.length() ) );
 		}
 	}
-
 }
