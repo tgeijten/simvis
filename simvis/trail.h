@@ -11,7 +11,11 @@ namespace vis
 	public:
 		trail() : node( nullptr ) {}
 		trail( node& parent, size_t num_points, float radius, color c, float detail = 0.5f );
-		virtual ~trail() {}
+
+		trail( const trail& ) = delete;
+		trail& operator=( const trail& ) = delete;
+		trail( trail&& ) = default;
+		trail& operator=( trail&& ) = default;
 
 		template< typename Iter >
 		void set_points( Iter b, Iter e, float relative_width = 1.0f );
