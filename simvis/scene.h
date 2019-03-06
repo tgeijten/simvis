@@ -13,7 +13,7 @@ namespace vis
 	{
 	public:
 		scene( bool use_shadows );
-		virtual ~scene();
+		scene( const scene& other ) = delete;
 
 		light add_light( const vec3f& pos, const color& c );
 	};

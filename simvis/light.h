@@ -10,7 +10,9 @@ namespace vis
 	{
 	public:
 		light() : node( nullptr ), light_source( nullptr ) {}
-		light( const light& other ) : node( other ), light_source( other.light_source ) {}
+		light( light&& other ) : node( std::move( other ) ), light_source( other.light_source ) { other.light_source = nullptr; }
+		light& operator=( light&& other ) { node::operator=( std::move( other ) ); light_source = other.light_source; other.light_source = nullptr; return *this; }
+		light( const light& other ) = delete;
 		explicit light( scene& parent, const vec3f& pos, const color& col );
 		virtual ~light() {}
 

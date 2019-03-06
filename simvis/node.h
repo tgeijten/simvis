@@ -14,8 +14,14 @@ namespace vis
 	class SIMVIS_API node
 	{
 	public:
+		node() : node_( nullptr ) {}
 		node( node* parent );
-		node( const node& other ) : node_( other.node_ ) {}
+
+		node( const node& ) = delete;
+		node& operator=( const node& ) = delete;
+		node( node&& other ) : node_( other.node_ ) { other.node_ = nullptr; }
+		node& operator=( node&& other ) { node_ = other.node_; other.node_ = nullptr; return *this; }
+
 		virtual ~node();
 
 		void attach( node& o );

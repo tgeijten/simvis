@@ -14,14 +14,25 @@ namespace vis
 	using xo::shape_type;
 
 	node::node( node* parent ) :
-	node_( nullptr )
+	node_( new osg::PositionAttitudeTransform )
 	{
 		if ( parent )
-		{
-			node_ = new osg::PositionAttitudeTransform;
 			parent->attach( *this );
-		}
 	}
+
+	//node::node( const node& other ) :
+	//node_( new osg::PositionAttitudeTransform( other.osg_trans_node() ) )
+	//{
+	//	for ( unsigned int i = 0; i < other.osg_trans_node().getNumParents(); ++i )
+	//		other.osg_trans_node().getParent( i )->addChild( node_ );
+	//}
+
+	//vis::node::node& node::operator=( const node& other )
+	//{
+	//	node_ = new osg::PositionAttitudeTransform( other.osg_trans_node() );
+	//	for ( unsigned int i = 0; i < other.osg_trans_node().getNumParents(); ++i )
+	//		other.osg_trans_node().getParent( i )->addChild( node_ );
+	//}
 
 	node::~node()
 	{
@@ -30,12 +41,12 @@ namespace vis
 
 	void node::attach( node& o )
 	{
-		node_->addChild( o.osg_node() );
+		node_->addChild( o.node_ );
 	}
 
 	void node::detach( node& o )
 	{
-		node_->removeChild( o.osg_node() );
+		node_->removeChild( o.node_ );
 	}
 
 	void node::detach_all()
@@ -62,12 +73,12 @@ namespace vis
 	{
 		// this resets any node mask related setting
 		// TODO: find a better way to show/hide nodes
-		osg_node()->setNodeMask( show ? ~0 : 0 );
+		node_->setNodeMask( show ? ~0 : 0 );
 	}
 
 	void node::set_material( material& m )
 	{
-		osg_node()->getOrCreateStateSet()->setAttribute( m.osg_mat() );
+		node_->getOrCreateStateSet()->setAttribute( m.osg_mat() );
 	}
 
 	bool node::has_parent() const

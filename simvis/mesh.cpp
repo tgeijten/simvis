@@ -67,10 +67,6 @@ namespace vis
 		node_->addChild( g );
 	}
 
-	mesh::~mesh()
-	{
-	}
-
 	mesh& mesh::scale( const vec3f& s )
 	{
 		osg_trans_node().setScale( to_osg( s ) );

@@ -10,10 +10,13 @@ namespace vis
 	{
 	public:
 		mesh() : node( nullptr ) {}
-		mesh( const mesh& other ) : node( other ) {}
 		mesh( node& parent, const xo::path& filename );
 		mesh( node& parent, const xo::shape& shape, const color& col, float detail = default_detail );
-		virtual ~mesh();
+
+		mesh( const mesh& ) = delete;
+		mesh& operator=( const mesh& ) = delete;
+		mesh( mesh&& ) = default;
+		mesh& operator=( mesh&& ) = default;
 
 		mesh& scale( const vec3f& s );
 		void set_color( const color& c );

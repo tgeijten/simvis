@@ -15,10 +15,6 @@ namespace vis
 			end_cone = mesh( *this, xo::cone{ head_radius, head_radius * 2 }, c, detail );
 	}
 
-	arrow::~arrow()
-	{
-	}
-
 	void arrow::pos( const vec3f& begin_pos, const vec3f& end_pos )
 	{
 		vec3f dir = end_pos - begin_pos;

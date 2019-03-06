@@ -15,22 +15,23 @@ namespace vis
 		if ( use_shadows )
 		{
 			auto s_root = new osgShadow::ShadowedScene;
-			node_ = s_root;
 
 			/// setup shadows
 			auto sm = new osgShadow::SoftShadowMap;
 			sm->setTextureSize( osg::Vec2s( 1024, 1024 ) );
-			s_root->setShadowTechnique( sm );
+			s_root-> setShadowTechnique( sm );
 			//sm->setAmbientBias( osg::Vec2( 0.5f, 0.5f ) );
 
 			auto ss = new osgShadow::ShadowSettings;
 			ss->setCastsShadowTraversalMask( OsgCastShadowMask );
 			ss->setReceivesShadowTraversalMask( OsgReceiveShadowMask ); // this one doesn't do anything in osg
 			s_root->setShadowSettings( ss );
+
+			node_ = s_root;
 		}
 		else
 		{
-			node_ = new osg::Group;
+			node_= new osg::Group;
 		}
 
 		// enable lighting
@@ -49,8 +50,6 @@ namespace vis
 		lm->setAmbientIntensity( osg::Vec4( 0.333, 0.333, 0.333, 1 ) );
 		node_->getOrCreateStateSet()->setAttribute( lm );
 	}
-
-	scene::~scene() {}
 
 	vis::light scene::add_light( const vec3f& pos, const color& c )
 	{

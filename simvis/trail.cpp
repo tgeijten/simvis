@@ -21,9 +21,9 @@ namespace vis
 
 		// add points
 		while ( points.size() < num_points )
-			points.push_back( mesh( *this, xo::sphere{ radius * 1.02f }, col, detail ) );
+			points.emplace_back( *this, xo::sphere{ radius * 1.02f }, col, detail );
 		while ( cylinders.size() < num_cylinders )
-			cylinders.push_back( mesh( *this, xo::cylinder{ radius, 1.0f }, col, detail ) );
+			cylinders.emplace_back( *this, xo::cylinder{ radius, 1.0f }, col, detail );
 
 		// remove points
 		points.resize( num_points );

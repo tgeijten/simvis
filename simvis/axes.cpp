@@ -19,9 +19,6 @@ namespace vis
 		parent.attach( *this );
 	}
 
-	axes::~axes()
-	{}
-
 	void axes::show( bool s )
 	{
 		x_arrow.show( s );
