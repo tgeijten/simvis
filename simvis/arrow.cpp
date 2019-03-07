@@ -25,4 +25,10 @@ namespace vis
 		if ( end_cone.size() )
 			end_cone.pos_ori( end_pos, q );
 	}
+
+	void arrow::set_color( const color& c )
+	{
+		cylinder.set_color( c );
+		end_cone.set_color( c );
+	}
 }

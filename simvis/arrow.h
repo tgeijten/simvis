@@ -16,6 +16,7 @@ namespace vis
 		arrow& operator=( arrow&& ) = default;
 
 		void pos( const vec3f& begin_pos, const vec3f& end_pos );
+		void set_color( const color& c );
 
 	private:
 		mesh cylinder;

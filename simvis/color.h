@@ -14,6 +14,14 @@ namespace vis
 		color( const xo::prop_node& pn );
 
 		float r, g, b, a;
+
+		static color red( float br = 1.0f, float sat = 1.0f ) { return color( br, br*( 1.0f - sat ), br*( 1.0f - sat ) ); }
+		static color yellow( float br = 1.0f, float sat = 1.0f ) { return color( br, br, br*( 1.0f - sat ) ); }
+		static color green( float br = 1.0f, float sat = 1.0f ) { return color( br*( 1.0f - sat ), br, br*( 1.0f - sat ) ); }
+		static color cyan( float br = 1.0f, float sat = 1.0f ) { return color( br*( 1.0f - sat ), br, br ); }
+		static color blue( float br = 1.0f, float sat = 1.0f ) { return color( br*( 1.0f - sat ), br*( 1.0f - sat ), br ); }
+		static color magenta( float br = 1.0f, float sat = 1.0f ) { return color( br, br*( 1.0f - sat ), br ); }
+		static color white( float br = 1.0f ) { return color( br, br, br ); }
 	};
 
 	template< typename T > inline color operator*( T s, const color& c ) { return color( s * c.r, s * c.g, s * c.b, s * c.a ); }
@@ -22,8 +30,9 @@ namespace vis
 	inline color operator+( const color& c1, const color& c2 ) { return color( c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a + c2.a ); }
 	inline color operator-( const color& c1, const color& c2 ) { return color( c1.r - c2.r, c1.g - c2.g, c1.b - c2.b, c1.a - c2.a ); }
 
-	inline color make_mix( const color& col1, const color& col2, double w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
+	inline color make_mix( const color& col1, const color& col2, float w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
 
+	// #todo: deprecate
 	inline color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br*( 1 - sat ) ); }
 	inline color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*( 1 - sat ) ); }
 	inline color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br, br*( 1 - sat ) ); }
