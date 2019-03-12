@@ -30,16 +30,7 @@ namespace vis
 	inline color operator+( const color& c1, const color& c2 ) { return color( c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a + c2.a ); }
 	inline color operator-( const color& c1, const color& c2 ) { return color( c1.r - c2.r, c1.g - c2.g, c1.b - c2.b, c1.a - c2.a ); }
 
-	inline color make_mix( const color& col1, const color& col2, float w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
-
-	// #todo: deprecate
-	inline color make_red( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br*( 1 - sat ) ); }
-	inline color make_yellow( double br = 1.0, double sat = 1.0 ) { return color( br, br, br*( 1 - sat ) ); }
-	inline color make_green( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br, br*( 1 - sat ) ); }
-	inline color make_cyan( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br, br ); }
-	inline color make_blue( double br = 1.0, double sat = 1.0 ) { return color( br*( 1 - sat ), br*( 1 - sat ), br ); }
-	inline color make_magenta( double br = 1.0, double sat = 1.0 ) { return color( br, br*( 1 - sat ), br ); }
-	inline color make_white( double br = 1.0 ) { return color( br, br, br ); }
+	inline color mix_colors( const color& col1, const color& col2, float w1 ) { return w1 * col1 + ( 1.0f - w1 ) * col2; }
 
 	SIMVIS_API float perceived_brightness( const color& c );
 
