@@ -4,7 +4,7 @@
 
 namespace vis
 {
-vis::color make_from_hsv( float H, float S, float V )
+	vis::color make_from_hsv( float H, float S, float V )
 	{
 		H = fmod( H, 360.0f ) / 60.0f;
 		float fract = H - floor( H );
