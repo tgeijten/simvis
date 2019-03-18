@@ -1,4 +1,4 @@
-find_path( SIMVIS_INCLUDE_DIR NAMES "simvis/prerequisites.h" PATHS ${CMAKE_CURRENT_SOURCE_DIR} )
+find_path( SIMVIS_INCLUDE_DIR NAMES "simvis/simvis_api.h" PATHS ${CMAKE_CURRENT_SOURCE_DIR} )
 
 set(SOURCE_FILES
 	"simvis/arrow.cpp"
