@@ -7,8 +7,8 @@
 
 namespace vis
 {
-	plane::plane( node& parent, const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep ) :
-	node( &parent )
+	plane::plane( node* parent, const vec3f& width, const vec3f& height, const xo::path& img_file, float wrep, float hrep ) :
+	node( parent )
 	{
 		osg::ref_ptr<osg::Image> img = osgDB::readImageFile( img_file.string() );
 		xo_assert( img.valid() );
